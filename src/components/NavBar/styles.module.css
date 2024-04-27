@@ -1,0 +1,125 @@
+.header {
+  background-color: var(--color-background);
+  box-shadow: 0px 14px 9px -11px rgba(0, 0, 0, 0.1);
+  height: 7.3rem;
+}
+
+.header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header button {
+  min-width: 150px;
+}
+
+.titleWrapper {
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.titleWrapper h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.titleWrapper > img {
+  cursor: pointer;
+}
+
+.userAvatar {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+}
+
+.navCloseBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 1.2rem;
+  cursor: pointer;
+}
+
+.username {
+  font-size: 1.8rem;
+  margin-block: 0.5rem;
+}
+
+.iconButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  height: 100%;
+}
+
+.mobileNav {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 300px;
+  padding-block: 1rem 2rem;
+  background-color: var(--color-background);
+}
+
+.flex {
+  display: flex;
+}
+
+.desktopNav {
+  display: none;
+  position: relative;
+}
+
+.profileCard {
+  position: absolute;
+  display: none;
+  place-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: white;
+  top: calc(100% + 1rem);
+  right: -1.5rem;
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.grid {
+  display: grid;
+}
+@media screen and (width >= 768px) {
+  .header {
+    display: flex;
+    padding: 1rem 1.5rem 1rem 3rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .titleWrapper {
+    padding: 0;
+  }
+
+  .titleWrapper > img {
+    display: none;
+  }
+
+  .titleWrapper h1 {
+    font-size: 3.2rem;
+  }
+
+  .mobileNav {
+    display: none;
+  }
+
+  .desktopNav {
+    display: flex;
+    gap: 1.5rem;
+  }
+}

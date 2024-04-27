@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 
+import Categories from "../components/Categories";
+
 const Home = () => {
   return (
     <div style={{ fontSize: "2rem" }}>
+      <Categories />
       <h1>Home</h1>
       <ul>
         <li>

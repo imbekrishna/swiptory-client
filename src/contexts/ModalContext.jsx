@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useCallback, useReducer } from "react";
 
 const ModalContext = createContext(null);
 
@@ -54,19 +54,18 @@ const ModalContextProvider = ({ children }) => {
     }
   );
 
-  const toggleAuthModal = (type = "LOGIN") => {
-    console.log("modal toggled");
+  const toggleAuthModal = useCallback((type = "LOGIN") => {
     dispatch({ type: "TOGGLE_AUTH_MODAL", payload: type });
-  };
-  const toggleAddModal = (type = "NEW", data = null) => {
+  }, []);
+  const toggleAddModal = useCallback((type = "NEW", data = null) => {
     dispatch({ type: "TOGGLE_ADD_MODAL", payload: { type, data } });
-  };
-  const toggleStoryModal = (data = null) => {
+  }, []);
+  const toggleStoryModal = useCallback((data = null) => {
     dispatch({ type: "TOGGLE_STORY_MODAL", payload: { data } });
-  };
-  const toggleLoadingModal = () => {
+  }, []);
+  const toggleLoadingModal = useCallback(() => {
     dispatch({ type: "TOGGLE_LOADING_MODAL" });
-  };
+  }, []);
 
   return (
     <ModalContext.Provider

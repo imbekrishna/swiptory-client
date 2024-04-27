@@ -121,6 +121,12 @@ body {
 }
 main {
   padding: 1.5rem;
+
+  @media screen and (width >= 768px) {
+    & {
+      padding: 3rem;
+    }
+  }
 }
 
 button {

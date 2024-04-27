@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  overflow: auto;
+  gap: 2rem;
+}
+
+.category {
+  min-width: 14.3rem;
+  height: 9.5rem;
+  padding: 1rem;
+  font-weight: bold;
+  color: var(--color-textLight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: lightseagreen;
+  border-radius: 1.5rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+.active {
+  border: 3px solid var(--color-border);
+}
+
+@media screen and (width > 768px) {
+  .category {
+    min-width: 23.5rem;
+    height: 23.5rem;
+    border-width: 5px;
+  }
+}

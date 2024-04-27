@@ -132,7 +132,13 @@ const StoryModal = () => {
   };
   return (
     <article className={styles.wrapper}>
-      <img className={styles.navBtn} src={prevIcon} alt="" role="button" />
+      <img
+        className={styles.navBtn}
+        src={prevIcon}
+        alt=""
+        role="button"
+        onClick={toPrev}
+      />
       <div
         ref={divRef}
         className={styles.content}
@@ -198,7 +204,13 @@ const StoryModal = () => {
           </div>
         </div>
       </div>
-      <img className={styles.navBtn} src={nextIcon} alt="" role="button" />
+      <img
+        className={styles.navBtn}
+        src={nextIcon}
+        alt=""
+        role="button"
+        onClick={toNext}
+      />
     </article>
   );
 };

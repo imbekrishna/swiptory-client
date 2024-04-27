@@ -30,12 +30,14 @@ const AuthForm = () => {
   };
 
   const handleChange = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(e);
-      return;
-    }
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -106,6 +108,7 @@ const AuthForm = () => {
               placeholder="Enter password"
               value={formData.password}
               onChange={handleChange}
+              onKeyDown={handleEnter}
             />
             <img
               src={showPassword ? eyeClose : eyeOpen}

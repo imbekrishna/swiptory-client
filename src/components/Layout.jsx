@@ -22,7 +22,12 @@ const Layout = () => {
         <Outlet />
       </main>
       <AuthForm />
-      <Toaster />
+      <Toaster
+        position="top-right"
+        containerStyle={{
+          fontSize: "1.5rem",
+        }}
+      />
     </>
   );
 };

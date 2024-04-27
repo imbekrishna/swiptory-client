@@ -1,0 +1,130 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navBtn {
+  display: none;
+}
+
+.content {
+  padding: 1.5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.positioned {
+  height: min-content;
+  margin-inline: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navWrapper {
+  composes: positioned;
+  margin-top: 2rem;
+  padding-inline: 0.5rem;
+}
+
+.progressWrapper {
+  composes: positioned;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.progressBar {
+  width: 100%;
+  background-color: hsla(0, 0%, 85%, 50%);
+  height: 5px;
+}
+
+.storyAction {
+  composes: positioned;
+  width: calc(100% - 2rem);
+  margin-top: 2rem;
+  padding-inline: 1.5rem;
+}
+
+.storyAction svg {
+  width: 3.5rem;
+}
+
+.likeDiv {
+  color: var(--color-textLight);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 600;
+}
+
+.meter {
+  background-color: white;
+  height: 5px;
+  width: 0;
+  animation-name: meterProgress;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+
+.visited {
+  width: 100%;
+  background-color: white;
+  height: 5px;
+}
+
+.slideDetail {
+  margin-top: auto;
+  padding-inline: 1rem;
+}
+
+.description {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+@keyframes meterProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@media screen and (width >= 768px) {
+  .content {
+    max-width: 33.9rem;
+    height: 60.6rem;
+    border-radius: 1.5rem;
+  }
+
+  .wrapper {
+    gap: 14rem;
+  }
+
+  .navBtn {
+    display: block;
+  }
+}

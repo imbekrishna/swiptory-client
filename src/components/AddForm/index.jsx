@@ -4,48 +4,12 @@ import api from "../../api/api_instance";
 import closeIcon from "../../assets/form_close.svg";
 import caretDown from "../../assets/caret_down.svg";
 import { ModalContext } from "../../contexts/ModalContext";
+import { CategoryContext } from "../../contexts/CategoryContext";
 import styles from "./styles.module.css";
 import Menu from "../DropDown";
 
 import Slide from "./Slide";
 import clsx from "clsx";
-
-const categories = [
-  {
-    _id: "FOOD",
-    name: "Food",
-    __v: 0,
-    imageUrl:
-      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=500",
-  },
-  {
-    _id: "HEALTH",
-    name: "Health and Fitness",
-    __v: 0,
-    imageUrl:
-      "https://images.unsplash.com/photo-1535914254981-b5012eebbd15?q=80&w=500",
-  },
-  {
-    _id: "TRAVEL",
-    name: "Travel",
-    __v: 0,
-    imageUrl:
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=500",
-  },
-  {
-    _id: "MOVIES",
-    name: "Movies",
-    __v: 0,
-    imageUrl: "https://images.unsplash.com/photo-1543536448-1e76fc2795bf?w=500",
-  },
-  {
-    _id: "EDUCATION",
-    name: "Education",
-    __v: 0,
-    imageUrl:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=500",
-  },
-];
 
 const AddForm = () => {
   const newSlide = {
@@ -54,7 +18,7 @@ const AddForm = () => {
     imageUrl: "",
   };
 
-  // const { categories } = useContext(FilterContext);
+  const { categories } = useContext(CategoryContext);
   const { addModal, toggleAddModal } = useContext(ModalContext);
 
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -167,14 +131,15 @@ const AddForm = () => {
     }
   };
   return (
-    <article className={styles.wrapper}>
+    <article
+      style={{
+        display: addModal.hidden ? "none" : "",
+      }}
+      className={styles.wrapper}
+      onClick={closeForm}
+    >
       <div className={styles.content} onClick={(e) => e.stopPropagation()}>
-        <img
-          src={closeIcon}
-          alt=""
-          onClick={() => console.log("closed")}
-          role="button"
-        />
+        <img src={closeIcon} alt="" onClick={closeForm} role="button" />
         <h1>Add story to feed</h1>
         <small className={styles.limitMessage}>Add upto 6 slides</small>
         <div className={styles.formWrapper}>

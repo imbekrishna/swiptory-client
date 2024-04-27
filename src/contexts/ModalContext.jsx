@@ -34,6 +34,14 @@ const ModalContextProvider = ({ children }) => {
             },
           };
         }
+        case "TOGGLE_LOADING_MODAL": {
+          return {
+            ...state,
+            loadingModal: {
+              hidden: !state.loadingModal.hidden,
+            },
+          };
+        }
         default:
           return state;
       }
@@ -42,6 +50,7 @@ const ModalContextProvider = ({ children }) => {
       authModal: { hidden: true, type: "LOGIN" },
       addModal: { hidden: true, type: "NEW", data: null },
       storyModal: { hidden: true, activeStoryId: null },
+      loadingModal: { hidden: true },
     }
   );
 
@@ -53,8 +62,10 @@ const ModalContextProvider = ({ children }) => {
     dispatch({ type: "TOGGLE_ADD_MODAL", payload: { type, data } });
   };
   const toggleStoryModal = (data = null) => {
-    console.log(data);
     dispatch({ type: "TOGGLE_STORY_MODAL", payload: { data } });
+  };
+  const toggleLoadingModal = () => {
+    dispatch({ type: "TOGGLE_LOADING_MODAL" });
   };
 
   return (
@@ -63,9 +74,11 @@ const ModalContextProvider = ({ children }) => {
         authModal: state.authModal,
         addModal: state.addModal,
         storyModal: state.storyModal,
+        loadingModal: state.loadingModal,
         toggleAddModal,
         toggleAuthModal,
         toggleStoryModal,
+        toggleLoadingModal,
       }}
     >
       {children}

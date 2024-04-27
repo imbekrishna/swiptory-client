@@ -1,27 +1,21 @@
 import { Outlet } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import NavBar from "./NavBar";
 import AuthForm from "./AuthForm";
-import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
-
-import api from "../api/api_instance";
+import AddForm from "./AddForm";
+import Loading from "./Loading";
 
 const Layout = () => {
-  useEffect(() => {
-    api
-      .get("/")
-      .then((res) => console.log(res.data))
-      .catch(console.error);
-  }, []);
-
   return (
     <>
       <NavBar />
       <main>
         <Outlet />
       </main>
+      <Loading />
       <AuthForm />
+      <AddForm />
       <Toaster
         position="top-right"
         containerStyle={{

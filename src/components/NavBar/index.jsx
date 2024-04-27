@@ -13,7 +13,7 @@ import hamburgerIcon from "../../assets/hamburger.svg";
 
 const NavBar = () => {
   const { user, removeUser } = useContext(UserContext);
-  const { toggleAuthModal, toggleStoryModal } = useContext(ModalContext);
+  const { toggleAuthModal, toggleAddModal } = useContext(ModalContext);
 
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
@@ -87,7 +87,7 @@ const NavBar = () => {
               className="bgPrimary textLight"
               onClick={() => {
                 closeNav();
-                toggleStoryModal("NEW");
+                toggleAddModal("NEW");
               }}
             >
               Add Story
@@ -121,7 +121,7 @@ const NavBar = () => {
               className="bgPrimary textLight"
               onClick={() => {
                 closeNav();
-                toggleStoryModal("NEW");
+                toggleAddModal("NEW");
               }}
             >
               Add Story

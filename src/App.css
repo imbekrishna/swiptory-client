@@ -185,3 +185,61 @@ img[role="button"] svg[role="button"] {
 }
 
 /* #endregion */
+
+/* #region Form Styles */
+
+label {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+label[for="password"] {
+  margin-top: 2rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-weight: 600;
+  padding: 1.1rem 0.7rem;
+  border: 2px solid;
+}
+
+input[name="password"] {
+  border: none;
+}
+input[name="password"]:focus {
+  outline: none;
+}
+
+::placeholder {
+  font-size: 1.2rem;
+  color: var(--color-placholder);
+}
+
+form > button {
+  margin-top: 2rem;
+  justify-self: center;
+}
+
+.formTitle {
+  font-size: 25px;
+  font-weight: 700;
+  margin-block: 2rem;
+  align-self: center;
+}
+
+.formError {
+  color: red;
+  margin-block: 1.5rem;
+}
+
+.passwordIcon {
+  width: 2rem;
+  margin-inline: 0.5rem;
+  cursor: pointer;
+}
+
+/* #endregion */

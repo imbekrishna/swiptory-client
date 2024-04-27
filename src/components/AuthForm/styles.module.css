@@ -1,0 +1,81 @@
+.wrapper {
+  composes: wrapper from "../StoryModal/styles.module.css";
+}
+
+.content {
+  background-color: var(--color-background);
+  width: 30rem;
+  height: 48rem;
+  border-radius: 1.6rem;
+  padding: 2rem;
+  place-items: center;
+  display: grid;
+  /* grid-auto-rows: min-content; */
+  grid-template-rows: min-content min-content 1fr 70px 1fr;
+}
+
+.content > img {
+  justify-self: end;
+}
+
+.content > h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.authForm label {
+  margin-top: 5rem;
+}
+
+.authForm > input,
+.passwordWrapper {
+  min-width: 24.5rem;
+}
+
+.passwordWrapper {
+  display: flex;
+  border: 2px solid;
+}
+
+.content > button {
+  height: min-content;
+}
+
+.authError {
+  color: var(--color-error);
+  font-size: 1.4rem;
+  font-weight: bold;
+  /* margin-top: 2.5rem; */
+}
+
+@media screen and (width >= 768px) {
+  .content {
+    width: 62.4rem;
+    height: 48.2rem;
+    padding: 6rem;
+  }
+
+  .content > h1 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 5.6rem;
+  }
+
+  .authForm {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    place-items: center;
+    column-gap: 8rem;
+    row-gap: 3.7rem;
+  }
+
+  .authForm label {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  .content > button {
+    color: var(--color-textDark);
+  }
+}

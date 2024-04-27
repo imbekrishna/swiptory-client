@@ -235,12 +235,57 @@ form > button {
 .formError {
   color: red;
   margin-block: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .passwordIcon {
   width: 2rem;
   margin-inline: 0.5rem;
   cursor: pointer;
+}
+
+/* #endregion */
+
+/* #region Dropdown */
+
+.select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select-button {
+  width: 100%;
+  font-weight: 600;
+  padding: 0.75rem;
+  border: 2px solid;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.select-dropdown {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  margin-top: 3px;
+  border: 2px solid;
+  background-color: white;
+}
+
+.select-item {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.select-item:hover {
+  background-color: whitesmoke;
 }
 
 /* #endregion */

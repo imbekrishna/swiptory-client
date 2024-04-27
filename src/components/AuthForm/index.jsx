@@ -89,7 +89,7 @@ const AuthForm = () => {
       <div className={styles.content} onClick={(e) => e.stopPropagation()}>
         <img src={closeIcon} alt="" onClick={closeForm} role="button" />
         <h1>{title}</h1>
-        <form className={styles.authForm} onFocus={() => setError(null)}>
+        <form className={styles.modalForm} onFocus={() => setError(null)}>
           <label htmlFor="username">Username</label>
           <input
             id="username"

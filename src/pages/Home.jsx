@@ -11,7 +11,7 @@ const Home = () => {
           </Link>
         </li>
         <li>
-          <Link to="auth">Login</Link>
+          <Link to="new">Add Story</Link>
         </li>
       </ul>
     </div>

@@ -2,17 +2,19 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import { ModalContext } from "../../contexts/ModalContext";
+
 import userAvatar from "../../assets/avatar.svg";
 import bookmarkIcon from "../../assets/bookmark.svg";
 import closeIcon from "../../assets/close.svg";
 import hamburgerIcon from "../../assets/hamburger.svg";
-import { useState } from "react";
 
 const NavBar = () => {
-  // const { user, removeUser } = useContext(UserContext);
-  // const { toggleAuthForm, toggleStoryForm } = useContext(FormContext);
+  const { user, removeUser } = useContext(UserContext);
+  const { toggleAuthModal, toggleStoryModal } = useContext(ModalContext);
 
-  const [user] = useState(false);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
 
@@ -23,7 +25,7 @@ const NavBar = () => {
 
   const logout = () => {
     setProfileIsOpen(false);
-    // removeUser();
+    removeUser();
   };
 
   const AuthComponent = () => (
@@ -32,7 +34,7 @@ const NavBar = () => {
         className="bgPrimary textLight"
         onClick={() => {
           closeNav();
-          //  toggleAuthForm("REGISTER");
+          toggleAuthModal("REGISTER");
         }}
       >
         Register
@@ -41,7 +43,7 @@ const NavBar = () => {
         className="bgSecondary textLight"
         onClick={() => {
           closeNav();
-          //  toggleAuthForm("LOGIN");
+          toggleAuthModal("LOGIN");
         }}
       >
         Log in
@@ -85,7 +87,7 @@ const NavBar = () => {
               className="bgPrimary textLight"
               onClick={() => {
                 closeNav();
-                // toggleStoryForm("NEW");
+                toggleStoryModal("NEW");
               }}
             >
               Add Story
@@ -119,7 +121,7 @@ const NavBar = () => {
               className="bgPrimary textLight"
               onClick={() => {
                 closeNav();
-                // toggleStoryForm("NEW");
+                toggleStoryModal("NEW");
               }}
             >
               Add Story
@@ -138,7 +140,7 @@ const NavBar = () => {
         <div
           className={clsx(styles.profileCard, profileIsOpen ? styles.grid : "")}
         >
-          <p>Bal Krishna Mehata</p>
+          <p className={styles.username}>{user?.username}</p>
           <button className="bgPrimary textLight" onClick={logout}>
             Logout
           </button>

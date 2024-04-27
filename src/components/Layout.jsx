@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import NavBar from "./NavBar";
+import AuthForm from "./AuthForm";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 
@@ -20,6 +21,7 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
+      <AuthForm />
       <Toaster />
     </>
   );

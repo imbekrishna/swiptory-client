@@ -46,7 +46,14 @@
   color: var(--color-error);
   font-size: 1.4rem;
   font-weight: bold;
-  /* margin-top: 2.5rem; */
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authError > p {
+  margin: 0;
 }
 
 @media screen and (width >= 768px) {

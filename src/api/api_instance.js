@@ -5,7 +5,8 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(function (config) {
-  const { token } = JSON.parse(localStorage.getItem("swiptoryuser"));
+  const user = window.localStorage.getItem("swiptoryuser");
+  const token = user ? JSON.parse(user).token : "";
   config.headers.Authorization = token ? `Bearer ${token}` : "";
   return config;
 });

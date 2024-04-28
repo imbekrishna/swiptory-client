@@ -2,9 +2,12 @@ import { useEffect, useReducer, useState } from "react";
 import api from "@/api/api_instance";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/UserContext";
+import { ModalContext } from "@/contexts/ModalContext";
 
 const useStory = (storyId) => {
   const { user } = useContext(UserContext);
+  const { toggleAuthModal, toggleStoryModal } = useContext(ModalContext);
+
   const [fetchStatus, setFetchStatus] = useState({
     loading: false,
     error: null,
@@ -62,6 +65,11 @@ const useStory = (storyId) => {
   // FIXME: Error handling for like and bookmark!
   const likeStory = async () => {
     try {
+      if (!user) {
+        toggleStoryModal();
+        toggleAuthModal("LOGIN");
+        return;
+      }
       const res = await api.patch(`/api/story/like/${storyId}`);
 
       if (res.status === 201) {
@@ -74,8 +82,13 @@ const useStory = (storyId) => {
       setFetchStatus((prev) => ({ ...prev, error: error }));
     }
   };
-  const bookmarkStory = async (user) => {
+  const bookmarkStory = async () => {
     try {
+      if (!user) {
+        toggleStoryModal();
+        toggleAuthModal("LOGIN");
+        return;
+      }
       const res = await api.patch(`/api/story/bookmark/${storyId}`);
 
       if (res.status === 201) {

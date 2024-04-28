@@ -15,9 +15,9 @@ const Layout = () => {
         <Outlet />
       </main>
       <Loading />
-      <AuthForm />
       <AddForm />
       <StoryModal />
+      <AuthForm />
       <Toaster
         position="top-right"
         containerStyle={{

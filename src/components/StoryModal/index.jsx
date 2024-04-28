@@ -28,7 +28,7 @@ const StoryModal = () => {
 
   const [index, setIndex] = useState(indexRef.current);
 
-  const storyId = storyModal.activeStoryId || params.storyId;
+  let storyId = params.storyId || storyModal.activeStoryId;
 
   const { fetchStatus, likeStory, bookmarkStory, data } = useStory(storyId);
 
@@ -96,8 +96,10 @@ const StoryModal = () => {
     setIndex(0);
     toggleStoryModal(null);
     if (params.storyId) {
+      storyId = null;
       navigate("/");
     }
+
     // FIXME: Clear story state
   };
 
@@ -113,10 +115,9 @@ const StoryModal = () => {
     `,
   };
 
-  // console.log(storyId, storyModal.hidden);
-  // if (!storyId || storyModal.hidden) {
-  //   return <h2>somethign</h2>;
-  // }
+  if (!storyId) {
+    return;
+  }
 
   if (fetchStatus.loading) {
     return (
@@ -128,7 +129,7 @@ const StoryModal = () => {
 
   return (
     <article
-      style={{ display: storyId || !storyModal.hidden ? "" : "none" }}
+      // style={{ display: storyId || !storyModal.hidden ? "" : "none" }}
       className={styles.wrapper}
     >
       <img

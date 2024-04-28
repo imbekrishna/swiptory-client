@@ -7,14 +7,17 @@
   gap: 4rem;
 }
 
-.wrapper > h1 {
+.wrapper > h2 {
   font-size: 3rem;
   font-weight: bold;
+  text-align: center;
 }
 
 .storiesWrapper {
   display: grid;
   gap: 2rem;
+  width: 100%;
+  max-width: 1600px;
 }
 
 .noStories {
@@ -27,6 +30,9 @@
 }
 
 @media screen and (width >= 768px) {
+  .wrapper {
+    margin-top: 5rem;
+  }
   .storiesWrapper {
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;

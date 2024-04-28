@@ -1,10 +1,24 @@
-import Story from "@components/Story";
+// import Story from "@components/Story";
 import styles from "./styles.module.css";
 import api from "@/api/api_instance";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  lazy,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  Suspense,
+} from "react";
+
+import Skeleton from "../Story/Skeleton";
+import toast from "react-hot-toast";
+import clsx from "clsx";
+
+const Story = lazy(() => import("@components/Story"));
 
 const Section = ({ category }) => {
   const [stories, setStories] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const firstRef = useRef(true);
   const pageRef = useRef({ currentPage: null, totalPages: null });
@@ -12,6 +26,7 @@ const Section = ({ category }) => {
   const getStories = useCallback(
     async (page = 1) => {
       try {
+        setLoading(true);
         const res = await api.get(
           `/api/story?category=${category._id}&page=${page}`
         );
@@ -21,6 +36,9 @@ const Section = ({ category }) => {
         pageRef.current.totalPages = totalPages;
       } catch (error) {
         console.log(error);
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
       }
     },
     [category._id]
@@ -45,17 +63,33 @@ const Section = ({ category }) => {
     <div className={styles.wrapper}>
       <h2>Top stories about {category.name}</h2>
       {stories.length === 0 ? (
-        <div className={styles.noStories}>No stories available</div>
+        <div className={styles.noStories}>
+          {loading ? (
+            <div className={styles.storiesWrapper}>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </div>
+          ) : (
+            "No stories available"
+          )}
+        </div>
       ) : (
         <>
           <div className={styles.storiesWrapper}>
             {stories.map((story) => (
-              <Story key={story._id} story={story} />
+              <Suspense key={story._id} fallback={<Skeleton />}>
+                <Story key={story._id} story={story} />
+              </Suspense>
             ))}
           </div>
           {pageRef.current.currentPage !== pageRef.current.totalPages && (
-            <button className="bgPrimary textLight" onClick={fetchNextPage}>
-              See all
+            <button
+              className={clsx("textLight", !loading && "bgPrimary")}
+              onClick={fetchNextPage}
+            >
+              {loading ? "..." : "See all"}
             </button>
           )}
         </>

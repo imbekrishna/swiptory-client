@@ -38,7 +38,7 @@ const Section = ({ category }) => {
     if (currentPage == totalPages) {
       return;
     }
-    getStories(currentPage + 1);
+    getStories(+currentPage + 1);
   };
 
   return (

@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import styles from "./styles.module.css";
+import { ModalContext } from "@/contexts/ModalContext";
 
 const Story = ({ story }) => {
   const featureSlide = story?.slides[0];
+  const { toggleStoryModal } = useContext(ModalContext);
 
   const bgStyle = {
     background: `
@@ -15,7 +18,11 @@ const Story = ({ story }) => {
     `,
   };
   return (
-    <div className={styles.wrapper} style={bgStyle}>
+    <div
+      className={styles.wrapper}
+      style={bgStyle}
+      onClick={() => toggleStoryModal(story._id)}
+    >
       <div className={styles.detail}>
         <h3>{featureSlide.heading}</h3>
         <p>{featureSlide.description}</p>

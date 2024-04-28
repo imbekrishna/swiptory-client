@@ -5,6 +5,7 @@ import NavBar from "@components/NavBar";
 import AuthForm from "@components/AuthForm";
 import AddForm from "@components/AddForm";
 import Loading from "@components/Loading";
+import StoryModal from "@components/StoryModal";
 
 const Layout = () => {
   return (
@@ -16,6 +17,7 @@ const Layout = () => {
       <Loading />
       <AuthForm />
       <AddForm />
+      <StoryModal />
       <Toaster
         position="top-right"
         containerStyle={{

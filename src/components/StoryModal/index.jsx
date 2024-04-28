@@ -1,63 +1,40 @@
+import { useCallback, useEffect, useRef, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
+
 import clsx from "clsx";
 import toast from "react-hot-toast";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import Like from "./Like";
 import Bookmark from "./Bookmark";
+import styles from "./styles.module.css";
 
 import closeIcon from "@assets/close.svg";
 import nextIcon from "@assets/next.svg";
 import prevIcon from "@assets/prev.svg";
 import sendIcon from "@assets/send.svg";
 
-import styles from "./styles.module.css";
-
-const storyData = {
-  _id: "66255eeec2315b0dc5928fd6",
-  user: "66239f88b75cf73100f7a766",
-  category: "TRAVEL",
-  slides: [
-    {
-      heading: "A tale of travel",
-      description: "description 1",
-      imageUrl:
-        "https://images.unsplash.com/photo-1712149851157-06131345e410?q=80&w=600",
-    },
-    {
-      heading: "heading 2",
-      description: "description 2",
-      imageUrl:
-        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=500",
-    },
-    {
-      heading: "heading 3",
-      description: "description 3",
-      imageUrl:
-        "https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=500",
-    },
-  ],
-  likes: ["66239f88b75cf73100f7a766", "66200ad9698208d1c327f250"],
-  createdAt: "2024-04-21T18:46:06.416Z",
-  updatedAt: "2024-04-25T12:00:59.616Z",
-  __v: 0,
-  bookmarks: ["66239f88b75cf73100f7a766"],
-};
+import { ModalContext } from "@/contexts/ModalContext";
+import useStory from "@/hooks/useStory";
+import Spinner from "@components/Loading/Spinner";
 
 const StoryModal = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const params = useParams();
+
   const indexRef = useRef(0); // remember slides index
   const divRef = useRef(null);
 
+  const { storyModal, toggleStoryModal } = useContext(ModalContext);
+
   const [index, setIndex] = useState(indexRef.current);
 
-  const [story] = useState(storyData);
+  const storyId = storyModal.activeStoryId || params.storyId;
 
-  const storyId = story._id;
+  const { fetchStatus, likeStory, bookmarkStory, data } = useStory(storyId);
 
-  const liked = false; //story?.likes.includes(user?.id);
-  const bookmarked = false; //story?.bookmarks.includes(user?.id);
+  const story = data.story;
+  const liked = data.liked;
+  const bookmarked = data.bookmarked;
 
   const toPrev = () => {
     indexRef.current = indexRef.current > 0 ? indexRef.current - 1 : 0;
@@ -115,7 +92,10 @@ const StoryModal = () => {
 
   const closeModal = (e) => {
     e.stopPropagation();
-    navigate("/");
+    indexRef.current = 0;
+    setIndex(0);
+    toggleStoryModal(null);
+    // navigate("/");
     // FIXME: Clear story state
   };
 
@@ -130,8 +110,24 @@ const StoryModal = () => {
     url(${story?.slides[indexRef.current].imageUrl}) center/cover no-repeat
     `,
   };
+
+  if (!storyId || storyModal.hidden) {
+    return;
+  }
+
+  if (fetchStatus.loading) {
+    return (
+      <article className={styles.wrapper}>
+        <Spinner />
+      </article>
+    );
+  }
+
   return (
-    <article className={styles.wrapper}>
+    <article
+      // style={{ display: storyId || !storyModal.hidden ? "" : "none" }}
+      className={styles.wrapper}
+    >
       <img
         className={styles.navBtn}
         src={prevIcon}
@@ -189,7 +185,7 @@ const StoryModal = () => {
             fillColor={bookmarked ? "blue" : "white"}
             handleClick={(e) => {
               e.stopPropagation();
-              // bookmarkStory(user);
+              bookmarkStory();
             }}
           />
           <div className={styles.likeDiv}>
@@ -197,7 +193,7 @@ const StoryModal = () => {
               fillColor={liked ? "red" : "white"}
               handleClick={(e) => {
                 e.stopPropagation();
-                // likeStory(user);
+                likeStory();
               }}
             />
             <span>{story?.likes.length}</span>

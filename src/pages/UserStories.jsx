@@ -1,6 +1,6 @@
 import useAPIData from "@/hooks/useAPIData";
 import toast from "react-hot-toast";
-import styles from "./styles.module.css";
+import styles from "@components/Section/styles.module.css";
 import StoryGrid from "@components/Story/StoryGrid";
 
 const UserStories = () => {

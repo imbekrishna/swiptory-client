@@ -48,12 +48,10 @@ function useAPIData(url, queryParams) {
   const getStories = useCallback(
     async (page = 1) => {
       const query = new URLSearchParams({ ...queryParams, page });
-      console.log(query.toString());
       try {
         dispatch({ type: "LOADING" });
         const res = await api.get(`${url}?${query.toString()}`);
         const { data, currentPage, totalPages } = res.data;
-        console.log(res.data);
         dispatch({
           type: "RESOLVED",
           response: { data, currentPage, totalPages },

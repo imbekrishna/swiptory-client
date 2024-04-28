@@ -35,6 +35,7 @@
 
 @media screen and (width >= 768px) {
   .wrapper {
+    width: 100%;
     min-width: 25.7rem;
     min-height: 45.9rem;
     padding: 1.8rem;

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import clsx from "clsx";
 import toast from "react-hot-toast";
@@ -18,7 +18,7 @@ import useStory from "@/hooks/useStory";
 import Spinner from "@components/Loading/Spinner";
 
 const StoryModal = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const params = useParams();
 
   const indexRef = useRef(0); // remember slides index
@@ -95,7 +95,9 @@ const StoryModal = () => {
     indexRef.current = 0;
     setIndex(0);
     toggleStoryModal(null);
-    // navigate("/");
+    if (params.storyId) {
+      navigate("/");
+    }
     // FIXME: Clear story state
   };
 
@@ -111,9 +113,10 @@ const StoryModal = () => {
     `,
   };
 
-  if (!storyId || storyModal.hidden) {
-    return;
-  }
+  // console.log(storyId, storyModal.hidden);
+  // if (!storyId || storyModal.hidden) {
+  //   return <h2>somethign</h2>;
+  // }
 
   if (fetchStatus.loading) {
     return (
@@ -125,7 +128,7 @@ const StoryModal = () => {
 
   return (
     <article
-      // style={{ display: storyId || !storyModal.hidden ? "" : "none" }}
+      style={{ display: storyId || !storyModal.hidden ? "" : "none" }}
       className={styles.wrapper}
     >
       <img

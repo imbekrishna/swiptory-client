@@ -14,8 +14,8 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="story/:storyId" element={<StoryModal />} />
         {/* TODO: Protect routes */}
+        <Route path="story/:storyId" element={<StoryModal />} />
         <Route path="user/stories" element={<UserStories />} />
         <Route path="user/bookmarks" element={<UserBookmarks />} />
       </Route>

@@ -1,8 +1,8 @@
 import styles from "./styles.module.css";
-import { CategoryContext } from "../../contexts/CategoryContext";
+import { CategoryContext } from "@contexts/CategoryContext";
 import { useContext } from "react";
 import clsx from "clsx";
-import Loading from "../Loading";
+import Loading from "@components/Loading";
 
 const Categories = () => {
   const { categories, activeCategory, setActiveCategory } =

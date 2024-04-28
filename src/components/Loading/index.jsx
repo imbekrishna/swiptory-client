@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styles from "./styles.module.css";
-import { ModalContext } from "../../contexts/ModalContext";
+import { ModalContext } from "@contexts/ModalContext";
 
 const Loading = ({ hidden = true }) => {
   const { loadingModal } = useContext(ModalContext);

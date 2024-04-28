@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer, useContext } from "react";
-import { ModalContext } from "./ModalContext";
-import api from "../api/api_instance";
+import { ModalContext } from "@contexts/ModalContext";
+import api from "@api/api_instance";
 
 const CategoryContext = createContext(null);
 

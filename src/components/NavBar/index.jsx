@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 import { useContext, useState } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import { ModalContext } from "../../contexts/ModalContext";
+import { UserContext } from "@contexts/UserContext";
+import { ModalContext } from "@contexts/ModalContext";
 
-import userAvatar from "../../assets/avatar.svg";
-import bookmarkIcon from "../../assets/bookmark.svg";
-import closeIcon from "../../assets/close.svg";
-import hamburgerIcon from "../../assets/hamburger.svg";
+import userAvatar from "@assets/avatar.svg";
+import bookmarkIcon from "@assets/bookmark.svg";
+import closeIcon from "@assets/close.svg";
+import hamburgerIcon from "@assets/hamburger.svg";
 
 const NavBar = () => {
   const { user, removeUser } = useContext(UserContext);

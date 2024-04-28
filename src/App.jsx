@@ -1,12 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import Layout from "./components/Layout";
+import Layout from "@components/Layout";
 
-import Home from "./pages/Home";
-import StoryModal from "./components/StoryModal";
-import UserStories from "./pages/UserStories";
-import UserBookmarks from "./pages/UserBookmarks";
+import Home from "@pages/Home";
+import StoryModal from "@components/StoryModal";
+import UserStories from "@pages/UserStories";
+import UserBookmarks from "@pages/UserBookmarks";
 
 const App = () => {
   return (

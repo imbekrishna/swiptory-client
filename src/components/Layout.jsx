@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-import NavBar from "./NavBar";
-import AuthForm from "./AuthForm";
-import AddForm from "./AddForm";
-import Loading from "./Loading";
+import NavBar from "@components/NavBar";
+import AuthForm from "@components/AuthForm";
+import AddForm from "@components/AddForm";
+import Loading from "@components/Loading";
 
 const Layout = () => {
   return (

@@ -1,20 +1,18 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  // eslint-disable-next-line no-undef
-  const env = loadEnv(mode, process.cwd());
-
-  return {
-    plugins: [react()],
-    server: {
-      proxy: {
-        "/api": env.VITE_PROXY_API,
-      },
-      cors: {
-        origin: "*",
-      },
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "@api": path.resolve(__dirname, "./src/api"),
+      "@assets": path.resolve(__dirname, "./src/assets"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@contexts": path.resolve(__dirname, "./src/contexts"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
     },
-  };
+  },
 });

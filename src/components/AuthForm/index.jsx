@@ -1,14 +1,14 @@
 import { AxiosError } from "axios";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import api from "../../api/api_instance";
-import { UserContext } from "../../contexts/UserContext";
-import { ModalContext } from "../../contexts/ModalContext";
+import api from "@api/api_instance";
+import { UserContext } from "@contexts/UserContext";
+import { ModalContext } from "@contexts/ModalContext";
 import styles from "./styles.module.css";
 
-import eyeClose from "../../assets/eye_close.svg";
-import eyeOpen from "../../assets/eye_open.svg";
-import closeIcon from "../../assets/form_close.svg";
+import eyeClose from "@assets/eye_close.svg";
+import eyeOpen from "@assets/eye_open.svg";
+import closeIcon from "@assets/form_close.svg";
 import clsx from "clsx";
 
 const AuthForm = () => {

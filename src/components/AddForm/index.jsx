@@ -1,12 +1,12 @@
 import { AxiosError } from "axios";
 import { useContext, useEffect, useState } from "react";
-import api from "../../api/api_instance";
-import closeIcon from "../../assets/form_close.svg";
-import caretDown from "../../assets/caret_down.svg";
-import { ModalContext } from "../../contexts/ModalContext";
-import { CategoryContext } from "../../contexts/CategoryContext";
+import api from "@api/api_instance";
+import closeIcon from "@assets/form_close.svg";
+import caretDown from "@assets/caret_down.svg";
+import { ModalContext } from "@contexts/ModalContext";
+import { CategoryContext } from "@contexts/CategoryContext";
 import styles from "./styles.module.css";
-import Menu from "../DropDown";
+import Menu from "@components/DropDown";
 
 import Slide from "./Slide";
 import clsx from "clsx";

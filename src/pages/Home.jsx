@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import Categories from "../components/Categories";
+import Categories from "@components/Categories";
 
 const Home = () => {
   return (

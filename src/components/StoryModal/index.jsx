@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 import Like from "./Like";
 import Bookmark from "./Bookmark";
 
-import closeIcon from "../../assets/close.svg";
-import nextIcon from "../../assets/next.svg";
-import prevIcon from "../../assets/prev.svg";
-import sendIcon from "../../assets/send.svg";
+import closeIcon from "@assets/close.svg";
+import nextIcon from "@assets/next.svg";
+import prevIcon from "@assets/prev.svg";
+import sendIcon from "@assets/send.svg";
 
 import styles from "./styles.module.css";
 

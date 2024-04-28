@@ -1,12 +1,13 @@
-import { createContext, useEffect, useReducer, useContext } from "react";
-import { ModalContext } from "@contexts/ModalContext";
+import { createContext, useEffect, useReducer, useState } from "react";
 import api from "@api/api_instance";
 
 const CategoryContext = createContext(null);
 
 const CategoryContextProvider = ({ children }) => {
-  const { toggleLoadingModal } = useContext(ModalContext);
-
+  const [fetchStatus, setFetchStatus] = useState({
+    loading: false,
+    error: null,
+  });
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -27,16 +28,21 @@ const CategoryContextProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    toggleLoadingModal();
+    setFetchStatus((prev) => ({ ...prev, loading: true }));
     api
       .get("/api/category")
       .then((res) => {
         const { data } = res.data;
         dispatch({ type: "SET_CATEGORIES", payload: data });
       })
-      .catch((error) => console.log(error.response.data))
-      .finally(toggleLoadingModal);
-  }, [toggleLoadingModal]);
+      .catch((error) => {
+        setFetchStatus((prev) => ({ ...prev, error: error }));
+        console.log(error);
+      })
+      .finally(() => {
+        setFetchStatus((prev) => ({ ...prev, loading: false }));
+      });
+  }, []);
 
   const setCategories = (categories) => {
     dispatch({ type: "SET_CATEGORIES", payload: categories });
@@ -51,6 +57,7 @@ const CategoryContextProvider = ({ children }) => {
       value={{
         categories: state.categories,
         activeCategory: state.activeCategory,
+        fetchStatus,
         setCategories,
         setActiveCategory,
       }}

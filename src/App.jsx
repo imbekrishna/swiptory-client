@@ -7,6 +7,7 @@ import Home from "@pages/Home";
 import StoryModal from "@components/StoryModal";
 import UserStories from "@pages/UserStories";
 import UserBookmarks from "@pages/UserBookmarks";
+import Error from "@/components/Error";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="user/stories" element={<UserStories />} />
         <Route path="user/bookmarks" element={<UserBookmarks />} />
       </Route>
+      <Route path="error" element={<Error />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

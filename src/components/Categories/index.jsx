@@ -3,9 +3,11 @@ import { CategoryContext } from "@contexts/CategoryContext";
 import { useContext } from "react";
 import clsx from "clsx";
 import Loading from "@components/Loading";
+import toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 
 const Categories = () => {
-  const { categories, activeCategory, setActiveCategory } =
+  const { fetchStatus, categories, activeCategory, setActiveCategory } =
     useContext(CategoryContext);
   const bgStyle = (imageUrl) => ({
     background: `
@@ -16,8 +18,13 @@ const Categories = () => {
   const allImage =
     "https://images.unsplash.com/photo-1578403881967-084f9885be74?q=80&w=500";
 
-  if (!categories) {
-    return <Loading hidden={false} />;
+  if (fetchStatus.Loading) {
+    return <Loading hidden={true} />;
+  }
+
+  if (fetchStatus.error) {
+    toast.error("Something went wrong. Please refresh.");
+    return <Navigate to="error" />;
   }
 
   return (

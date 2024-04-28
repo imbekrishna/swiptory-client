@@ -1,0 +1,42 @@
+.storiesWrapper {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1600px;
+}
+
+.noStories {
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-textMid);
+  min-height: 200px;
+  max-width: 1600px;
+  width: 100%;
+}
+
+@media screen and (width >= 768px) {
+  .wrapper {
+    margin-top: 5rem;
+  }
+  .storiesWrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  .noStories {
+    min-height: 300px;
+  }
+}
+
+@media screen and (width >= 1024px) {
+  .storiesWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (width >= 1144px) {
+  .storiesWrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

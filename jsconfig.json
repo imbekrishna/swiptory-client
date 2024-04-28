@@ -22,5 +22,12 @@
         "src/pages/*"
       ],
     }
-  }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

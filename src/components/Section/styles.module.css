@@ -1,0 +1,20 @@
+.wrapper {
+  margin-top: 2rem;
+}
+
+.wrapper > h2 {
+  text-align: center;
+  margin-block: 3rem;
+}
+
+.storiesWrapper {
+  display: grid;
+  gap: 2rem;
+}
+
+@media screen and (width >= 768px) {
+  .storiesWrapper {
+    grid-template-columns: repeat(4, auto);
+    gap: 3rem;
+  }
+}

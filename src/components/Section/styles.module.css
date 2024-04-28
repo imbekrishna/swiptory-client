@@ -27,6 +27,8 @@
   font-weight: bold;
   color: var(--color-textMid);
   min-height: 200px;
+  max-width: 1600px;
+  width: 100%;
 }
 
 @media screen and (width >= 768px) {

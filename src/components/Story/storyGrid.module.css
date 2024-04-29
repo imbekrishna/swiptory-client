@@ -16,6 +16,29 @@
   width: 100%;
 }
 
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+  /* margin: 15px auto; */
+  position: relative;
+  background: hsl(0, 100%, 73%);
+  box-sizing: border-box;
+  animation: shadowExpandX 2s linear infinite alternate;
+}
+
+@keyframes shadowExpandX {
+  0% {
+    box-shadow: 0 0, 0 0;
+    color: hsla(0, 100%, 73%, 0.2);
+  }
+  100% {
+    box-shadow: -24px 0, 24px 0;
+    color: hsl(0, 100%, 73%, 0.8);
+  }
+}
+
 @media screen and (width >= 768px) {
   .wrapper {
     margin-top: 5rem;

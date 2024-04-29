@@ -26,8 +26,6 @@ const StoryModal = () => {
 
   const { storyModal, toggleStoryModal } = useContext(ModalContext);
 
-  const [index, setIndex] = useState(indexRef.current);
-
   let storyId = params.storyId || storyModal.activeStoryId;
 
   const { fetchStatus, likeStory, bookmarkStory, data } = useStory(storyId);
@@ -35,6 +33,10 @@ const StoryModal = () => {
   const story = data.story;
   const liked = data.liked;
   const bookmarked = data.bookmarked;
+
+  const [index, setIndex] = useState(indexRef.current);
+  const [overflowHidden, setOverflowHidden] = useState(true);
+  const isOverflowing = story?.slides[index].description.length > 111;
 
   const toPrev = () => {
     indexRef.current = indexRef.current > 0 ? indexRef.current - 1 : 0;
@@ -107,7 +109,7 @@ const StoryModal = () => {
     background: `
       linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.8) 5%,
       rgba(0, 0, 0, 0.09) 50%,
       rgba(0, 0, 0, 0.85) 75%
     ),
@@ -180,9 +182,31 @@ const StoryModal = () => {
           <h2 className="textTitle textLight">
             {story?.slides[index].heading}
           </h2>
-          <p className={clsx(styles.description, "textLight")}>
-            {story?.slides[index].description}
-          </p>
+          <div className={clsx(styles.description, "textLight")}>
+            <p className={clsx(overflowHidden && styles.hideOverflow)}>
+              {story?.slides[index].description}
+            </p>
+            {isOverflowing && overflowHidden && (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOverflowHidden(false);
+                }}
+              >
+                more
+              </span>
+            )}
+            {isOverflowing && !overflowHidden && (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOverflowHidden(true);
+                }}
+              >
+                less
+              </span>
+            )}
+          </div>
         </div>
         <div className={styles.storyAction}>
           <Bookmark

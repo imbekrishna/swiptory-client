@@ -41,7 +41,7 @@ const StoryGrid = ({
               className={clsx("textLight", !loading && "bgPrimary")}
               onClick={fetchNextPage}
             >
-              {loading ? "..." : "See all"}
+              {loading ? <span className={styles.loader}></span> : "See all"}
             </button>
           )}
         </>

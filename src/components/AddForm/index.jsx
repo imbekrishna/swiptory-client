@@ -95,7 +95,6 @@ const AddForm = () => {
   const closeForm = () => {
     setActiveIndex(0); // BUG: Throws error on submission
     setSlides(Array.from({ length: 3 }, () => newSlide));
-    updateKey();
     toggleAddModal();
   };
 
@@ -125,6 +124,7 @@ const AddForm = () => {
           await api.post("/api/story", { category: selectedCategory, slides });
         }
         closeForm();
+        updateKey();
       }
     } catch (error) {
       if (error instanceof AxiosError) {

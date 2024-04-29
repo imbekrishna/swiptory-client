@@ -1,5 +1,6 @@
 .wrapper {
   composes: wrapper from "../StoryModal/styles.module.css";
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .content {

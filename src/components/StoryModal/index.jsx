@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, useContext } from "react";
+import { useCallback, useRef, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import clsx from "clsx";
@@ -53,20 +53,6 @@ const StoryModal = () => {
     return indexRef.current;
   }, [indexRef, story]);
 
-  useEffect(() => {
-    let timerId;
-
-    if (story) {
-      timerId = setInterval(() => {
-        const val = toNext();
-        if (val === story?.slides.length - 1) {
-          clearInterval(timerId);
-        }
-      }, 3000);
-    }
-    return () => clearInterval(timerId);
-  }, [toNext, story, index]);
-
   const handleClick = (e) => {
     const divWidth = divRef.current.getBoundingClientRect().width;
 
@@ -101,8 +87,6 @@ const StoryModal = () => {
       storyId = null;
       navigate("/");
     }
-
-    // FIXME: Clear story state
   };
 
   const bgStyle = {
@@ -153,8 +137,10 @@ const StoryModal = () => {
               <div
                 className={clsx(
                   index == i && styles.meter,
-                  index >= i && styles.visited
+                  index >= i && styles.visited,
+                  !overflowHidden && styles.paused
                 )}
+                onAnimationEnd={toNext}
               ></div>
             </div>
           ))}

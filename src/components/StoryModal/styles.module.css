@@ -82,6 +82,13 @@
   animation-timing-function: linear;
 }
 
+.paused {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
 .visited {
   width: 100%;
   background-color: white;
@@ -98,6 +105,12 @@
   font-weight: 600;
   letter-spacing: 0.8px;
   line-height: 1.3;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.description > p:not(.hideOverflow) {
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 .description > span {

@@ -21,12 +21,27 @@ const useStory = (storyId) => {
         }
         case "LIKE_STORY": {
           const story = { ...state.story };
-          story.likes = [...story.likes, user.id];
+          const likesArray = [...story.likes];
+          if (likesArray.includes(user.id)) {
+            const index = likesArray.findIndex((i) => i === user.id);
+            likesArray.splice(index, 1);
+          } else {
+            likesArray.push(user.id);
+          }
+          story.likes = likesArray;
           return { story };
         }
         case "BOOKMARK_STORY": {
           const story = { ...state.story };
-          story.bookmarks = [...story.bookmarks, user.id];
+          const bookmarksArray = [...story.bookmarks];
+          if (bookmarksArray.includes(user.id)) {
+            const index = bookmarksArray.findIndex((i) => i === user.id);
+            bookmarksArray.splice(index, 1);
+          } else {
+            bookmarksArray.push(user.id);
+          }
+          story.bookmarks = bookmarksArray;
+
           return { story };
         }
         default:
@@ -73,10 +88,7 @@ const useStory = (storyId) => {
       const res = await api.patch(`/api/story/like/${storyId}`);
 
       if (res.status === 201) {
-        dispatch({
-          type: "LIKE_STORY",
-          payload: { user },
-        });
+        dispatch({ type: "LIKE_STORY" });
       }
     } catch (error) {
       setFetchStatus((prev) => ({ ...prev, error: error }));
@@ -92,10 +104,7 @@ const useStory = (storyId) => {
       const res = await api.patch(`/api/story/bookmark/${storyId}`);
 
       if (res.status === 201) {
-        dispatch({
-          type: "BOOKMARK_STORY",
-          payload: { user },
-        });
+        dispatch({ type: "BOOKMARK_STORY" });
       }
     } catch (error) {
       setFetchStatus((prev) => ({ ...prev, error: error }));

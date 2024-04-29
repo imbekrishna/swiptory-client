@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import { nanoid } from "nanoid";
+import api from "@/api/api_instance";
 
 const LS_KEY = "swiptoryuser";
 const UserContext = createContext(null);
@@ -33,6 +34,20 @@ const UserContextProvider = ({ children }) => {
 
   const setUser = (userData) =>
     dispatch({ type: "SAVE_USER", payload: userData });
+
+  const registerUser = async (formData) => {
+    await api.post("/api/user", formData);
+    const res = await api.post("/api/auth/login", formData);
+    const data = res.data.data;
+    setUser(data);
+  };
+
+  const loginUser = async (formData) => {
+    const res = await api.post("/api/auth/login", formData);
+    const data = res.data.data;
+    setUser(data);
+  };
+
   const removeUser = () => dispatch({ type: "REMOVE_USER" });
   const updateKey = () => dispatch({ type: "UPDATE_KEY" });
 
@@ -42,6 +57,8 @@ const UserContextProvider = ({ children }) => {
         user: state.user,
         refreshKey: state.refreshKey,
         setUser,
+        loginUser,
+        registerUser,
         removeUser,
         updateKey,
       }}

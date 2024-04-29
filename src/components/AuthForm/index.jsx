@@ -1,7 +1,6 @@
 import { AxiosError } from "axios";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import api from "@api/api_instance";
 import { UserContext } from "@contexts/UserContext";
 import { ModalContext } from "@contexts/ModalContext";
 import styles from "./styles.module.css";
@@ -12,7 +11,7 @@ import closeIcon from "@assets/form_close.svg";
 import clsx from "clsx";
 
 const AuthForm = () => {
-  const { setUser } = useContext(UserContext);
+  const { loginUser, registerUser } = useContext(UserContext);
   const { authModal, toggleAuthModal } = useContext(ModalContext);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -23,10 +22,12 @@ const AuthForm = () => {
     password: "",
   });
 
-  const validateForm = () => {
+  const isFormValid = () => {
     if (!formData.username || !formData.password) {
-      throw Error("All fields are required!");
+      setError("All fields are required!");
+      return false;
     }
+    return true;
   };
 
   const handleChange = (e) => {
@@ -44,14 +45,12 @@ const AuthForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      validateForm();
+      if (!isFormValid()) return;
       if (authModal.type === "LOGIN") {
-        const res = await api.post("/api/auth/login", formData);
-        const data = res.data.data;
-        setUser(data);
+        await loginUser(formData);
         toast.success("Login success.");
       } else {
-        await api.post("/api/user", formData);
+        await registerUser(formData);
         toast.success("Register success.");
       }
       closeForm();
@@ -91,6 +90,7 @@ const AuthForm = () => {
         <form className={styles.modalForm} onFocus={() => setError(null)}>
           <label htmlFor="username">Username</label>
           <input
+            required
             id="username"
             type="text"
             name="username"
@@ -101,10 +101,13 @@ const AuthForm = () => {
           <label htmlFor="password">Password</label>
           <div className={styles.passwordWrapper}>
             <input
+              required
               id="password"
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Enter password"
+              pattern="/^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/"
+              title="Password must be at least 8 characters long and contain a lowercase letter, an uppercase letter, a number and a special character"
               value={formData.password}
               onChange={handleChange}
               onKeyDown={handleEnter}

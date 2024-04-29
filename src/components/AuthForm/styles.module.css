@@ -49,9 +49,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .authError > p {
+  white-space: pre-line;
   margin: 0;
 }
 

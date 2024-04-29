@@ -5,6 +5,7 @@ import closeIcon from "@assets/form_close.svg";
 import caretDown from "@assets/caret_down.svg";
 import { ModalContext } from "@contexts/ModalContext";
 import { CategoryContext } from "@contexts/CategoryContext";
+import { UserContext } from "@contexts/UserContext";
 import styles from "./styles.module.css";
 import Menu from "@components/DropDown";
 
@@ -18,6 +19,7 @@ const AddForm = () => {
     imageUrl: "",
   };
 
+  const { updateKey } = useContext(UserContext);
   const { categories } = useContext(CategoryContext);
   const { addModal, toggleAddModal } = useContext(ModalContext);
 
@@ -32,9 +34,11 @@ const AddForm = () => {
   useEffect(() => {
     if (addModal.data) {
       setSlides(addModal.data?.slides);
-      setSelectedCategory(addModal.data?.category);
+      setSelectedCategory(
+        categories.find((cat) => addModal.data?.category === cat._id)
+      );
     }
-  }, [addModal.data]);
+  }, [addModal.data, categories]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,7 +93,9 @@ const AddForm = () => {
   };
 
   const closeForm = () => {
+    setActiveIndex(0); // BUG: Throws error on submission
     setSlides(Array.from({ length: 3 }, () => newSlide));
+    updateKey();
     toggleAddModal();
   };
 

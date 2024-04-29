@@ -6,16 +6,16 @@ import { UserContext } from "@contexts/UserContext";
 import UserStories from "./UserStories";
 
 const Home = () => {
-  const { user } = useContext(UserContext);
+  const { user, refreshKey } = useContext(UserContext);
   const { categories, activeCategory } = useContext(CategoryContext);
 
   if (!activeCategory) {
     return (
       <>
         <Categories />
-        {user && <UserStories />}
+        {user && <UserStories key={refreshKey} />}
         {categories?.map((category) => (
-          <Section key={category._id} category={category} />
+          <Section key={`${category._id}${refreshKey}`} category={category} />
         ))}
       </>
     );
@@ -24,7 +24,11 @@ const Home = () => {
   return (
     <>
       <Categories />
-      <Section key={activeCategory._id} category={activeCategory} />;
+      <Section
+        key={`${activeCategory._id}${refreshKey}`}
+        category={activeCategory}
+      />
+      ;
     </>
   );
 };

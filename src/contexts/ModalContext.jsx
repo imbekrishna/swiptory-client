@@ -21,7 +21,7 @@ const ModalContextProvider = ({ children }) => {
             addModal: {
               hidden: !state.addModal.hidden,
               type: action.payload.type ?? state.addModal.type,
-              data: action.payload.data ?? state.addModal.data,
+              data: action.payload.data,
             },
           };
         }

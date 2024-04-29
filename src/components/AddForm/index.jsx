@@ -95,7 +95,7 @@ const AddForm = () => {
   const closeForm = () => {
     setActiveIndex(0);
     setSlides(Array.from({ length: 3 }, () => newSlide));
-    toggleAddModal();
+    toggleAddModal(null);
   };
 
   const slideIsInvalid = (slideData) => {
@@ -166,7 +166,12 @@ const AddForm = () => {
               </>
             )}
           </div>
-          <form className={styles.modalForm}>
+          <form
+            className={styles.modalForm}
+            onFocus={() => {
+              setError(null);
+            }}
+          >
             <label htmlFor="heading">Heading: </label>
             <input
               type="text"

@@ -144,6 +144,22 @@ img[role="button"] svg[role="button"] {
   cursor: pointer;
 }
 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #fff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px #ffffff;
+  background-color: var(--color-textMid);
+}
+
 /* #region Utility classes */
 
 .textCenter {

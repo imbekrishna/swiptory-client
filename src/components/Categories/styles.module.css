@@ -3,6 +3,7 @@
   overflow: auto;
   gap: 2rem;
   font-size: 2rem;
+  padding-block: 0.5rem;
 }
 
 .category {

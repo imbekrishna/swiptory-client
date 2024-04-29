@@ -93,7 +93,7 @@ const AddForm = () => {
   };
 
   const closeForm = () => {
-    setActiveIndex(0); // BUG: Throws error on submission
+    setActiveIndex(0);
     setSlides(Array.from({ length: 3 }, () => newSlide));
     toggleAddModal();
   };
@@ -115,7 +115,6 @@ const AddForm = () => {
         throw Error("All fields are required for all the slides");
       } else {
         if (addModal.type === "EDIT") {
-          // TODO: Should reload page on update?
           await api.put(`/api/story/${addModal.data._id}`, {
             category: selectedCategory._id,
             slides,

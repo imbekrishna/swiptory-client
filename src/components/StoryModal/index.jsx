@@ -75,7 +75,7 @@ const StoryModal = () => {
 
     const url = `${protocol}//${host}/story/${storyId}`;
     navigator.clipboard.writeText(url);
-    toast.success("Link copied");
+    toast.success("Link copied to clipboard");
   };
 
   const closeModal = (e) => {

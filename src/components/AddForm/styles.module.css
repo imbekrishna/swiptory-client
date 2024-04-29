@@ -154,6 +154,7 @@
 
   .modalForm textarea {
     height: 8rem;
+    resize: none;
   }
 
   .btnNav {

@@ -28,29 +28,6 @@ const NavBar = () => {
     removeUser();
   };
 
-  const AuthComponent = () => (
-    <>
-      <button
-        className="bgPrimary textLight"
-        onClick={() => {
-          closeNav();
-          toggleAuthModal("REGISTER");
-        }}
-      >
-        Register
-      </button>
-      <button
-        className="bgSecondary textLight"
-        onClick={() => {
-          closeNav();
-          toggleAuthModal("LOGIN");
-        }}
-      >
-        Log in
-      </button>
-    </>
-  );
-
   return (
     <header className={styles.header}>
       <div className={styles.titleWrapper}>
@@ -59,7 +36,14 @@ const NavBar = () => {
         </Link>
         <img src={hamburgerIcon} alt="" role="button" onClick={toggleNav} />
       </div>
-      <nav className={clsx(styles.mobileNav, navIsOpen && styles.flex)}>
+      <nav
+        className={clsx(styles.mobileNav, navIsOpen && styles.flex)}
+        onClick={(e) => {
+          if (e.target.nodeName === "BUTTON") {
+            closeNav();
+          }
+        }}
+      >
         {user && (
           <img
             className={styles.userAvatar}
@@ -76,7 +60,24 @@ const NavBar = () => {
           onClick={closeNav}
         />{" "}
         {!user ? (
-          <AuthComponent />
+          <>
+            <button
+              className="bgPrimary textLight"
+              onClick={() => {
+                toggleAuthModal("LOGIN");
+              }}
+            >
+              Login
+            </button>
+            <button
+              className="bgPrimary textLight"
+              onClick={() => {
+                toggleAuthModal("REGISTER");
+              }}
+            >
+              Register
+            </button>
+          </>
         ) : (
           <>
             <p className={styles.username}>{user.username}</p>
@@ -86,7 +87,6 @@ const NavBar = () => {
             <button
               className="bgPrimary textLight"
               onClick={() => {
-                closeNav();
                 toggleAddModal("NEW");
               }}
             >
@@ -135,7 +135,24 @@ const NavBar = () => {
             />
           </>
         ) : (
-          <AuthComponent />
+          <>
+            <button
+              className="bgPrimary textLight"
+              onClick={() => {
+                toggleAuthModal("REGISTER");
+              }}
+            >
+              Register Now
+            </button>
+            <button
+              className="bgSecondary textLight"
+              onClick={() => {
+                toggleAuthModal("LOGIN");
+              }}
+            >
+              Sign in
+            </button>
+          </>
         )}
         <div
           className={clsx(styles.profileCard, profileIsOpen ? styles.grid : "")}

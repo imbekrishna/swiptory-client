@@ -34,14 +34,14 @@
 .userAvatar {
   position: absolute;
   top: 1rem;
-  left: 1.5rem;
+  left: 2.7rem;
 }
 
 .navCloseBtn {
   position: absolute;
   top: 1.5rem;
-  right: 1.5rem;
-  width: 1.2rem;
+  right: 2.5rem;
+  width: 1.8rem;
   cursor: pointer;
 }
 
@@ -64,11 +64,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 4rem;
   min-height: 300px;
-  padding-block: 1rem 2rem;
+  padding-block: 1rem 5rem;
   background-color: var(--color-background);
-  box-shadow: 0px 14px 9px -11px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 14px 9px -11px rgba(70, 68, 68, 1);
+  z-index: 1;
 }
 
 .flex {
@@ -126,6 +127,6 @@
 
   .desktopNav {
     display: flex;
-    gap: 1.5rem;
+    gap: 3rem;
   }
 }

@@ -31,7 +31,7 @@ const Story = memo(({ story }) => {
         <h3>{featureSlide.heading}</h3>
         <p>{featureSlide.description}</p>
       </div>
-      {story.user === user.id && (
+      {story.user === user?.id && (
         <button
           className={styles.editBtn}
           onClick={(e) => {

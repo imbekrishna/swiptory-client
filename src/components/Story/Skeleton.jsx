@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import styles from "./styles.module.css";
 const Skeleton = () => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.detail}>
+    <div className={clsx(styles.wrapper, styles.shimmer)}>
+      <div>
         <h3>&nbsp;</h3>
         <p>&nbsp;</p>
       </div>

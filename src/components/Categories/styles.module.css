@@ -15,7 +15,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: lightseagreen;
   border-radius: 1.5rem;
   user-select: none;
   cursor: pointer;
@@ -23,6 +22,26 @@
 
 .active {
   border: 3px solid var(--color-border);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 3s linear infinite;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.5) 25%,
+    rgba(0, 0, 0, 0.2) 50%
+  );
+  background-size: 200% 100%;
 }
 
 @media screen and (width > 768px) {

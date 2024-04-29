@@ -1,10 +1,4 @@
 .wrapper {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.09) 50%,
-    rgba(0, 0, 0, 0.85) 75%
-  );
   max-width: 39.8rem;
   min-height: 58.65rem;
   padding: 3rem;
@@ -52,6 +46,26 @@
   position: absolute;
   bottom: -1.5rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 3s linear infinite;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.5) 25%,
+    rgba(0, 0, 0, 0.2) 50%
+  );
+  background-size: 200% 100%;
 }
 
 @media screen and (width >= 768px) {

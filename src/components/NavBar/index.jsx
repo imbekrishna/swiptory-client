@@ -1,15 +1,17 @@
+import { useContext, useState } from "react";
+
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import styles from "./styles.module.css";
-
-import { useContext, useState } from "react";
-import { UserContext } from "@contexts/UserContext";
-import { ModalContext } from "@contexts/ModalContext";
 
 import userAvatar from "@assets/avatar.svg";
 import bookmarkIcon from "@assets/bookmark.svg";
 import closeIcon from "@assets/close.svg";
 import hamburgerIcon from "@assets/hamburger.svg";
+
+import { ModalContext } from "@contexts/ModalContext";
+import { UserContext } from "@contexts/UserContext";
+
+import styles from "./styles.module.css";
 
 const NavBar = () => {
   const { user, removeUser } = useContext(UserContext);
@@ -44,21 +46,8 @@ const NavBar = () => {
           }
         }}
       >
-        {user && (
-          <img
-            className={styles.userAvatar}
-            src={userAvatar}
-            width="48px"
-            alt=""
-          />
-        )}
-        <img
-          className={styles.navCloseBtn}
-          src={closeIcon}
-          alt=""
-          role="button"
-          onClick={closeNav}
-        />{" "}
+        {user && <img className={styles.userAvatar} src={userAvatar} width="48px" alt="" />}
+        <img className={styles.navCloseBtn} src={closeIcon} alt="" role="button" onClick={closeNav} />{" "}
         {!user ? (
           <>
             <button
@@ -93,11 +82,8 @@ const NavBar = () => {
               Add Story
             </button>
             <Link to="/user/bookmarks">
-              <button
-                className={clsx("bgPrimary", "textLight", styles.iconButton)}
-              >
-                <img src={bookmarkIcon} width="16px" height="16px" alt="" />{" "}
-                <span>Bookmarks</span>
+              <button className={clsx("bgPrimary", "textLight", styles.iconButton)}>
+                <img src={bookmarkIcon} width="16px" height="16px" alt="" /> <span>Bookmarks</span>
               </button>
             </Link>
             <button className="bgPrimary textLight" onClick={logout}>
@@ -110,11 +96,8 @@ const NavBar = () => {
         {user ? (
           <>
             <Link to="/user/bookmarks">
-              <button
-                className={clsx("bgPrimary", "textLight", styles.iconButton)}
-              >
-                <img src={bookmarkIcon} width="16px" height="16px" alt="" />{" "}
-                <span>Bookmarks</span>
+              <button className={clsx("bgPrimary", "textLight", styles.iconButton)}>
+                <img src={bookmarkIcon} width="16px" height="16px" alt="" /> <span>Bookmarks</span>
               </button>
             </Link>
             <button
@@ -127,12 +110,7 @@ const NavBar = () => {
               Add Story
             </button>
             <img src={userAvatar} width="48px" alt="" />
-            <img
-              src={hamburgerIcon}
-              alt=""
-              role="button"
-              onClick={toggleProfile}
-            />
+            <img src={hamburgerIcon} alt="" role="button" onClick={toggleProfile} />
           </>
         ) : (
           <>
@@ -154,9 +132,7 @@ const NavBar = () => {
             </button>
           </>
         )}
-        <div
-          className={clsx(styles.profileCard, profileIsOpen ? styles.grid : "")}
-        >
+        <div className={clsx(styles.profileCard, profileIsOpen ? styles.grid : "")}>
           <p className={styles.username}>{user?.username}</p>
           <button className="bgPrimary textLight" onClick={logout}>
             Logout

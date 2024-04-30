@@ -1,16 +1,11 @@
 import { Suspense, lazy } from "react";
+
 import Skeleton from "./Skeleton";
 import styles from "./storyGrid.module.css";
 
 const Story = lazy(() => import("./index"));
 
-const StoryGrid = ({
-  stories,
-  loading,
-  currentPage,
-  totalPages,
-  fetchNextPage,
-}) => {
+const StoryGrid = ({ stories, loading, currentPage, totalPages, fetchNextPage }) => {
   return (
     <>
       {stories.length === 0 ? (
@@ -36,11 +31,7 @@ const StoryGrid = ({
             ))}
           </div>
           {currentPage !== totalPages && (
-            <button
-              className="textLight bgPrimary"
-              disabled={loading}
-              onClick={fetchNextPage}
-            >
+            <button className="textLight bgPrimary" disabled={loading} onClick={fetchNextPage}>
               {loading ? <span className={styles.loader}></span> : "See more"}
             </button>
           )}

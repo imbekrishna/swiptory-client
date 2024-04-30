@@ -1,11 +1,14 @@
 import useAPIData from "@/hooks/useAPIData";
 import toast from "react-hot-toast";
-import styles from "./styles.module.css";
+
 import StoryGrid from "@components/Story/StoryGrid";
 
+import styles from "./styles.module.css";
+
 const Section = ({ category }) => {
-  const { loading, error, currentPage, totalPages, fetchNextPage, data } =
-    useAPIData("/api/story/", { category: category._id });
+  const { loading, error, currentPage, totalPages, fetchNextPage, data } = useAPIData("/api/story/", {
+    category: category._id,
+  });
 
   if (error) {
     toast.error(error.message);

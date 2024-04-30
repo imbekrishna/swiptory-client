@@ -1,21 +1,21 @@
-import { useCallback, useContext, useRef, useState } from 'react';
+import { useCallback, useContext, useRef, useState } from "react";
 
-import { ModalContext } from '@/contexts/ModalContext';
-import useStory from '@/hooks/useStory';
-import clsx from 'clsx';
-import toast from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router-dom';
+import { ModalContext } from "@/contexts/ModalContext";
+import useStory from "@/hooks/useStory";
+import clsx from "clsx";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
-import closeIcon from '@assets/close.svg';
-import nextIcon from '@assets/next.svg';
-import prevIcon from '@assets/prev.svg';
-import sendIcon from '@assets/send.svg';
+import closeIcon from "@assets/close.svg";
+import nextIcon from "@assets/next.svg";
+import prevIcon from "@assets/prev.svg";
+import sendIcon from "@assets/send.svg";
 
-import Spinner from '@components/Loading/Spinner';
+import Spinner from "@components/Loading/Spinner";
 
-import Bookmark from './Bookmark';
-import Like from './Like';
-import styles from './styles.module.css';
+import Bookmark from "./Bookmark";
+import Like from "./Like";
+import styles from "./styles.module.css";
 
 const StoryModal = () => {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ const StoryModal = () => {
 
     const url = `${protocol}//${host}/story/${storyId}`;
     navigator.clipboard.writeText(url);
-    toast.success('Link copied to clipboard');
+    toast.success("Link copied to clipboard");
   };
 
   const closeModal = (e) => {
@@ -82,7 +82,7 @@ const StoryModal = () => {
     toggleStoryModal(null);
     if (params.storyId) {
       storyId = null;
-      navigate('/');
+      navigate("/");
     }
   };
 
@@ -136,7 +136,7 @@ const StoryModal = () => {
             src={closeIcon}
             width="18px"
             height="18px"
-            style={{ filter: 'invert(100%)' }}
+            style={{ filter: "invert(100%)" }}
             alt=""
             role="button"
             onClick={closeModal}
@@ -145,7 +145,7 @@ const StoryModal = () => {
         </div>
         <div className={styles.slideDetail}>
           <h2 className="textTitle textLight">{story?.slides[index].heading}</h2>
-          <div className={clsx(styles.description, 'textLight')}>
+          <div className={clsx(styles.description, "textLight")}>
             <p className={clsx(overflowHidden && styles.hideOverflow)}>{story?.slides[index].description}</p>
             {isOverflowing && overflowHidden && (
               <span
@@ -171,7 +171,7 @@ const StoryModal = () => {
         </div>
         <div className={styles.storyAction}>
           <Bookmark
-            fillColor={bookmarked ? 'blue' : 'white'}
+            fillColor={bookmarked ? "blue" : "white"}
             handleClick={(e) => {
               e.stopPropagation();
               bookmarkStory();
@@ -179,7 +179,7 @@ const StoryModal = () => {
           />
           <div className={styles.likeDiv}>
             <Like
-              fillColor={liked ? 'red' : 'white'}
+              fillColor={liked ? "red" : "white"}
               handleClick={(e) => {
                 e.stopPropagation();
                 likeStory();

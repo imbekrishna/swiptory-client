@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
+      "@*": [
         "src/*"
       ],
       "@assets/*": [
@@ -17,7 +17,7 @@
       "@contexts/*": [
         "src/contexts/*"
       ],
-      "@/hooks/*": [
+      "@hooks/*": [
         "src/hooks/*"
       ],
       "@pages/*": [

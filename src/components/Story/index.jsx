@@ -1,8 +1,11 @@
 import { memo, useContext } from "react";
-import styles from "./styles.module.css";
-import { ModalContext } from "@contexts/ModalContext";
+
 import editIcon from "@assets/edit.svg";
+
+import { ModalContext } from "@contexts/ModalContext";
 import { UserContext } from "@contexts/UserContext";
+
+import styles from "./styles.module.css";
 
 const Story = memo(({ story }) => {
   const featureSlide = story?.slides[0];
@@ -22,11 +25,7 @@ const Story = memo(({ story }) => {
     `,
   };
   return (
-    <div
-      className={styles.wrapper}
-      style={bgStyle}
-      onClick={() => toggleStoryModal(story._id)}
-    >
+    <div className={styles.wrapper} style={bgStyle} onClick={() => toggleStoryModal(story._id)}>
       <div className={styles.detail}>
         <h3>{featureSlide.heading}</h3>
         <p>{featureSlide.description}</p>

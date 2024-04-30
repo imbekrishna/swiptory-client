@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
+
 const SelectContext = createContext();
-import PropTypes from "prop-types";
 
 export default function Select({ children }) {
   const [open, setOpen] = useState(false);
@@ -15,9 +15,5 @@ export default function Select({ children }) {
     </SelectContext.Provider>
   );
 }
-
-Select.propTypes = {
-  children: PropTypes.node,
-};
 
 export { SelectContext };

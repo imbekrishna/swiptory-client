@@ -1,16 +1,21 @@
-import { AxiosError } from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
+
+import { AxiosError } from "axios";
+import clsx from "clsx";
+
 import api from "@api/api_instance";
-import closeIcon from "@assets/form_close.svg";
+
 import caretDown from "@assets/caret_down.svg";
-import { ModalContext } from "@contexts/ModalContext";
+import closeIcon from "@assets/form_close.svg";
+
 import { CategoryContext } from "@contexts/CategoryContext";
+import { ModalContext } from "@contexts/ModalContext";
 import { UserContext } from "@contexts/UserContext";
-import styles from "./styles.module.css";
+
 import Menu from "@components/DropDown";
 
 import Slide from "./Slide";
-import clsx from "clsx";
+import styles from "./styles.module.css";
 
 const AddForm = () => {
   const newSlide = {
@@ -24,9 +29,7 @@ const AddForm = () => {
   const { addModal, toggleAddModal } = useContext(ModalContext);
 
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [slides, setSlides] = useState(
-    Array.from({ length: 3 }, () => newSlide)
-  );
+  const [slides, setSlides] = useState(Array.from({ length: 3 }, () => newSlide));
   const [activeIndex, setActiveIndex] = useState(0);
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -36,9 +39,7 @@ const AddForm = () => {
   useEffect(() => {
     if (addModal.data) {
       setSlides(addModal.data?.slides);
-      setSelectedCategory(
-        categories.find((cat) => addModal.data?.category === cat._id)
-      );
+      setSelectedCategory(categories.find((cat) => addModal.data?.category === cat._id));
     }
   }, [addModal.data, categories]);
 
@@ -103,9 +104,7 @@ const AddForm = () => {
 
   const slideIsInvalid = (slideData) => {
     // TODO: Strengthen validation
-    const isInvalid = Object.values(slideData).some(
-      (item) => item.length === 0
-    );
+    const isInvalid = Object.values(slideData).some((item) => item.length === 0);
     return isInvalid;
   };
 
@@ -217,17 +216,12 @@ const AddForm = () => {
             <label htmlFor="category">Category: </label>
             <Menu>
               <Menu.Button>
-                <span className={clsx(!selectedCategory && "textMid")}>
-                  {selectedCategory.name || "Category"}
-                </span>
+                <span className={clsx(!selectedCategory && "textMid")}>{selectedCategory.name || "Category"}</span>
                 <img src={caretDown} alt="" />
               </Menu.Button>
               <Menu.Dropdown>
                 {categories?.map((category) => (
-                  <Menu.Item
-                    key={category._id}
-                    onClick={() => setSelectedCategory(category)}
-                  >
+                  <Menu.Item key={category._id} onClick={() => setSelectedCategory(category)}>
                     {category.name}
                   </Menu.Item>
                 ))}
@@ -239,23 +233,13 @@ const AddForm = () => {
           <p>{error ?? ""}</p>
         </div>
         <div className={styles.buttonWrapper}>
-          <button
-            className={clsx("bgTertiary", "textLight", styles.btnNav)}
-            onClick={() => prevSlide()}
-          >
+          <button className={clsx("bgTertiary", "textLight", styles.btnNav)} onClick={() => prevSlide()}>
             Previous
           </button>
-          <button
-            className={clsx("bgSecondary", "textLight", styles.btnNav)}
-            onClick={() => nextSlide()}
-          >
+          <button className={clsx("bgSecondary", "textLight", styles.btnNav)} onClick={() => nextSlide()}>
             Next
           </button>
-          <button
-            className="bgPrimary textLight"
-            disabled={submitting}
-            onClick={handleSubmit}
-          >
+          <button className="bgPrimary textLight" disabled={submitting} onClick={handleSubmit}>
             {submitting ? <span className={styles.loader}></span> : "Post"}
           </button>
         </div>

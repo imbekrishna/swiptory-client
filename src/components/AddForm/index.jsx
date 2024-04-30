@@ -97,6 +97,7 @@ const AddForm = () => {
 
   const closeForm = () => {
     setActiveIndex(0);
+    setSelectedCategory("")
     setError(null);
     setSlides(Array.from({ length: 3 }, () => newSlide));
     toggleAddModal(null);

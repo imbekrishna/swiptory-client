@@ -61,9 +61,9 @@
   animation: shimmer 3s linear infinite;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(0, 0, 0, 0.5) 25%,
-    rgba(0, 0, 0, 0.2) 50%
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 25%,
+    rgba(0, 0, 0, 0.1) 50%
   );
   background-size: 200% 100%;
 }

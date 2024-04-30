@@ -1,14 +1,17 @@
-import { AxiosError } from "axios";
 import { useContext, useState } from "react";
+
+import { AxiosError } from "axios";
+import clsx from "clsx";
 import toast from "react-hot-toast";
-import { UserContext } from "@contexts/UserContext";
-import { ModalContext } from "@contexts/ModalContext";
-import styles from "./styles.module.css";
 
 import eyeClose from "@assets/eye_close.svg";
 import eyeOpen from "@assets/eye_open.svg";
 import closeIcon from "@assets/form_close.svg";
-import clsx from "clsx";
+
+import { ModalContext } from "@contexts/ModalContext";
+import { UserContext } from "@contexts/UserContext";
+
+import styles from "./styles.module.css";
 
 const AuthForm = () => {
   const { loginUser, registerUser } = useContext(UserContext);
@@ -77,16 +80,10 @@ const AuthForm = () => {
     e?.stopPropagation();
   };
 
-  const title = `${
-    authModal.type === "LOGIN" ? "Login" : "Register"
-  } to SwipTory`;
+  const title = `${authModal.type === "LOGIN" ? "Login" : "Register"} to SwipTory`;
 
   return (
-    <article
-      style={{ display: authModal.hidden ? "none" : "" }}
-      className={clsx(styles.wrapper)}
-      onClick={closeForm}
-    >
+    <article style={{ display: authModal.hidden ? "none" : "" }} className={clsx(styles.wrapper)} onClick={closeForm}>
       <div className={styles.content} onClick={(e) => e.stopPropagation()}>
         <img src={closeIcon} alt="" onClick={closeForm} role="button" />
         <h1>{title}</h1>
@@ -125,18 +122,8 @@ const AuthForm = () => {
         <div className={styles.authError}>
           <p>{error ?? ""}</p>
         </div>
-        <button
-          className="bgSecondary textLight"
-          disabled={loading}
-          onClick={handleSubmit}
-        >
-          {loading ? (
-            <span className={styles.loader}></span>
-          ) : authModal.type === "LOGIN" ? (
-            "Login"
-          ) : (
-            "Register"
-          )}
+        <button className="bgSecondary textLight" disabled={loading} onClick={handleSubmit}>
+          {loading ? <span className={styles.loader}></span> : authModal.type === "LOGIN" ? "Login" : "Register"}
         </button>
       </div>
     </article>

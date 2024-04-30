@@ -221,9 +221,9 @@ label {
   margin-bottom: 0.2rem;
 }
 
-label[for="password"] {
+/* label[for="password"] {
   margin-top: 2rem;
-}
+} */
 
 input,
 textarea {

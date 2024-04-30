@@ -1,27 +1,29 @@
-import useAPIData from "@/hooks/useAPIData";
+import useAPIData from "@hooks/useAPIData";
+import SectionData from "@components/Section/SectionData";
 import toast from "react-hot-toast";
-import styles from "./styles.module.css";
-import StoryGrid from "@components/Story/StoryGrid";
 
 const UserBookmarks = () => {
-  const { loading, error, currentPage, totalPages, fetchNextPage, data } =
-    useAPIData("/api/user/bookmarks/", {});
+  const { loading, error, currentPage, totalPages, fetchNextPage, data, getStories } = useAPIData(
+    "/api/user/bookmarks/",
+    {},
+  );
+
+  const title = "Your bookmarks";
 
   if (error) {
     toast.error(error.message);
-    return;
   }
   return (
-    <div className={styles.wrapper}>
-      <h2>Your bookmarks</h2>
-      <StoryGrid
-        currentPage={currentPage}
-        fetchNextPage={fetchNextPage}
-        loading={loading}
-        stories={data}
-        totalPages={totalPages}
-      />
-    </div>
+    <SectionData
+      title={title}
+      data={data}
+      error={error}
+      loading={loading}
+      getStories={getStories}
+      totalPages={totalPages}
+      currentPage={currentPage}
+      fetchNextPage={fetchNextPage}
+    />
   );
 };
 export default UserBookmarks;

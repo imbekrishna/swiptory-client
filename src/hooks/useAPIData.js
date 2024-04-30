@@ -87,6 +87,7 @@ function useAPIData(url, queryParams) {
     currentPage: state.currentPage,
     totalPages: state.totalPages,
     fetchNextPage,
+    getStories,
   };
 }
 

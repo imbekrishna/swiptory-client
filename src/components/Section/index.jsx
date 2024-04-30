@@ -1,30 +1,30 @@
 import useAPIData from "@/hooks/useAPIData";
 import toast from "react-hot-toast";
 
-import StoryGrid from "@components/Story/StoryGrid";
-
-import styles from "./styles.module.css";
+import SectionData from "./SectionData";
 
 const Section = ({ category }) => {
-  const { loading, error, currentPage, totalPages, fetchNextPage, data } = useAPIData("/api/story/", {
+  const { loading, error, currentPage, totalPages, fetchNextPage, data, getStories } = useAPIData("/api/story/", {
     category: category._id,
   });
+
+  const title = `Top stories about ${category.name}`;
 
   if (error) {
     toast.error(error.message);
     return;
   }
   return (
-    <div className={styles.wrapper}>
-      <h2>Top stories about {category.name}</h2>
-      <StoryGrid
-        currentPage={currentPage}
-        fetchNextPage={fetchNextPage}
-        loading={loading}
-        stories={data}
-        totalPages={totalPages}
-      />
-    </div>
+    <SectionData
+      title={title}
+      data={data}
+      error={error}
+      loading={loading}
+      getStories={getStories}
+      totalPages={totalPages}
+      currentPage={currentPage}
+      fetchNextPage={fetchNextPage}
+    />
   );
 };
 export default Section;

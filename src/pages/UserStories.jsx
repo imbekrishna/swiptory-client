@@ -1,31 +1,36 @@
+import { useContext } from "react";
+
+import { UserContext } from "@/contexts/UserContext";
 import useAPIData from "@/hooks/useAPIData";
 import toast from "react-hot-toast";
-import styles from "@components/Section/styles.module.css";
-import StoryGrid from "@components/Story/StoryGrid";
-import { UserContext } from "@/contexts/UserContext";
-import { useContext } from "react";
+
+import SectionData from "@components/Section/SectionData";
 
 const UserStories = () => {
   const { refreshKey } = useContext(UserContext);
-  const { loading, error, currentPage, totalPages, fetchNextPage, data } =
-    useAPIData("/api/user/stories/", {});
+  const { loading, error, currentPage, totalPages, fetchNextPage, data, getStories } = useAPIData(
+    "/api/user/stories/",
+    {},
+  );
+
+  const title = "Your stories";
 
   if (error) {
     toast.error(error.message);
-    return;
   }
+  
   return (
-    <div className={styles.wrapper}>
-      <h2>Your stories</h2>
-      <StoryGrid
-        key={refreshKey}
-        currentPage={currentPage}
-        fetchNextPage={fetchNextPage}
-        loading={loading}
-        stories={data}
-        totalPages={totalPages}
-      />
-    </div>
+    <SectionData
+      key={refreshKey}
+      title={title}
+      data={data}
+      error={error}
+      loading={loading}
+      getStories={getStories}
+      totalPages={totalPages}
+      currentPage={currentPage}
+      fetchNextPage={fetchNextPage}
+    />
   );
 };
 export default UserStories;

@@ -1,8 +1,10 @@
 import { useEffect, useReducer, useState } from "react";
-import api from "@/api/api_instance";
 import { useContext } from "react";
-import { UserContext } from "@/contexts/UserContext";
-import { ModalContext } from "@/contexts/ModalContext";
+
+import api from "@api/api_instance";
+import { ModalContext } from "@contexts/ModalContext";
+import { UserContext } from "@contexts/UserContext";
+import toast from "react-hot-toast";
 
 const useStory = (storyId) => {
   const { user } = useContext(UserContext);
@@ -50,7 +52,7 @@ const useStory = (storyId) => {
     },
     {
       story: null,
-    }
+    },
   );
 
   useEffect(() => {
@@ -77,7 +79,6 @@ const useStory = (storyId) => {
   const liked = state.story?.likes.includes(user?.id);
   const bookmarked = state.story?.bookmarks.includes(user?.id);
 
-  // FIXME: Error handling for like and bookmark!
   const likeStory = async () => {
     try {
       if (!user) {
@@ -85,12 +86,11 @@ const useStory = (storyId) => {
         toggleAuthModal("LOGIN");
         return;
       }
-      const res = await api.patch(`/api/story/like/${storyId}`);
+      await api.patch(`/api/story/like/${storyId}`);
 
-      if (res.status === 201) {
-        dispatch({ type: "LIKE_STORY" });
-      }
+      dispatch({ type: "LIKE_STORY" });
     } catch (error) {
+      toast.error("Failed to like. Try again.");
       setFetchStatus((prev) => ({ ...prev, error: error }));
     }
   };
@@ -101,12 +101,10 @@ const useStory = (storyId) => {
         toggleAuthModal("LOGIN");
         return;
       }
-      const res = await api.patch(`/api/story/bookmark/${storyId}`);
-
-      if (res.status === 201) {
-        dispatch({ type: "BOOKMARK_STORY" });
-      }
+      await api.patch(`/api/story/bookmark/${storyId}`);
+      dispatch({ type: "BOOKMARK_STORY" });
     } catch (error) {
+      toast.error("Failed to bookmark. Try again.");
       setFetchStatus((prev) => ({ ...prev, error: error }));
     }
   };

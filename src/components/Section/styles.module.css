@@ -32,7 +32,7 @@
 }
 
 @media screen and (width >= 768px) {
-  .wrapper {
+  .wrapper + .wrapper {
     margin-top: 5rem;
   }
   .storiesWrapper {

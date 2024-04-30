@@ -1,21 +1,21 @@
-import { useCallback, useRef, useState, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useCallback, useContext, useRef, useState } from 'react';
 
-import clsx from "clsx";
-import toast from "react-hot-toast";
+import { ModalContext } from '@/contexts/ModalContext';
+import useStory from '@/hooks/useStory';
+import clsx from 'clsx';
+import toast from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import Like from "./Like";
-import Bookmark from "./Bookmark";
-import styles from "./styles.module.css";
+import closeIcon from '@assets/close.svg';
+import nextIcon from '@assets/next.svg';
+import prevIcon from '@assets/prev.svg';
+import sendIcon from '@assets/send.svg';
 
-import closeIcon from "@assets/close.svg";
-import nextIcon from "@assets/next.svg";
-import prevIcon from "@assets/prev.svg";
-import sendIcon from "@assets/send.svg";
+import Spinner from '@components/Loading/Spinner';
 
-import { ModalContext } from "@/contexts/ModalContext";
-import useStory from "@/hooks/useStory";
-import Spinner from "@components/Loading/Spinner";
+import Bookmark from './Bookmark';
+import Like from './Like';
+import styles from './styles.module.css';
 
 const StoryModal = () => {
   const navigate = useNavigate();
@@ -45,10 +45,7 @@ const StoryModal = () => {
   };
 
   const toNext = useCallback(() => {
-    indexRef.current =
-      indexRef.current < story?.slides.length - 1
-        ? indexRef.current + 1
-        : indexRef.current;
+    indexRef.current = indexRef.current < story?.slides.length - 1 ? indexRef.current + 1 : indexRef.current;
     setIndex(indexRef.current);
     return indexRef.current;
   }, [indexRef, story]);
@@ -75,7 +72,7 @@ const StoryModal = () => {
 
     const url = `${protocol}//${host}/story/${storyId}`;
     navigator.clipboard.writeText(url);
-    toast.success("Link copied to clipboard");
+    toast.success('Link copied to clipboard');
   };
 
   const closeModal = (e) => {
@@ -85,7 +82,7 @@ const StoryModal = () => {
     toggleStoryModal(null);
     if (params.storyId) {
       storyId = null;
-      navigate("/");
+      navigate('/');
     }
   };
 
@@ -118,19 +115,8 @@ const StoryModal = () => {
       // style={{ display: storyId || !storyModal.hidden ? "" : "none" }}
       className={styles.wrapper}
     >
-      <img
-        className={styles.navBtn}
-        src={prevIcon}
-        alt=""
-        role="button"
-        onClick={toPrev}
-      />
-      <div
-        ref={divRef}
-        className={styles.content}
-        style={bgStyle}
-        onClick={handleClick}
-      >
+      <img className={styles.navBtn} src={prevIcon} alt="" role="button" onClick={toPrev} />
+      <div ref={divRef} className={styles.content} style={bgStyle} onClick={handleClick}>
         <div className={styles.progressWrapper}>
           {story?.slides.map((_, i) => (
             <div key={`progress-${i}`} className={styles.progressBar}>
@@ -138,7 +124,7 @@ const StoryModal = () => {
                 className={clsx(
                   index == i && styles.meter,
                   index >= i && styles.visited,
-                  !overflowHidden && styles.paused
+                  !overflowHidden && styles.paused,
                 )}
                 onAnimationEnd={toNext}
               ></div>
@@ -150,28 +136,17 @@ const StoryModal = () => {
             src={closeIcon}
             width="18px"
             height="18px"
-            style={{ filter: "invert(100%)" }}
+            style={{ filter: 'invert(100%)' }}
             alt=""
             role="button"
             onClick={closeModal}
           />
-          <img
-            src={sendIcon}
-            width="24px"
-            height="24px"
-            alt=""
-            role="button"
-            onClick={copyShareLink}
-          />
+          <img src={sendIcon} width="24px" height="24px" alt="" role="button" onClick={copyShareLink} />
         </div>
         <div className={styles.slideDetail}>
-          <h2 className="textTitle textLight">
-            {story?.slides[index].heading}
-          </h2>
-          <div className={clsx(styles.description, "textLight")}>
-            <p className={clsx(overflowHidden && styles.hideOverflow)}>
-              {story?.slides[index].description}
-            </p>
+          <h2 className="textTitle textLight">{story?.slides[index].heading}</h2>
+          <div className={clsx(styles.description, 'textLight')}>
+            <p className={clsx(overflowHidden && styles.hideOverflow)}>{story?.slides[index].description}</p>
             {isOverflowing && overflowHidden && (
               <span
                 onClick={(e) => {
@@ -196,7 +171,7 @@ const StoryModal = () => {
         </div>
         <div className={styles.storyAction}>
           <Bookmark
-            fillColor={bookmarked ? "blue" : "white"}
+            fillColor={bookmarked ? 'blue' : 'white'}
             handleClick={(e) => {
               e.stopPropagation();
               bookmarkStory();
@@ -204,7 +179,7 @@ const StoryModal = () => {
           />
           <div className={styles.likeDiv}>
             <Like
-              fillColor={liked ? "red" : "white"}
+              fillColor={liked ? 'red' : 'white'}
               handleClick={(e) => {
                 e.stopPropagation();
                 likeStory();
@@ -214,13 +189,7 @@ const StoryModal = () => {
           </div>
         </div>
       </div>
-      <img
-        className={styles.navBtn}
-        src={nextIcon}
-        alt=""
-        role="button"
-        onClick={toNext}
-      />
+      <img className={styles.navBtn} src={nextIcon} alt="" role="button" onClick={toNext} />
     </article>
   );
 };

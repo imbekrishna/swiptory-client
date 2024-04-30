@@ -1,14 +1,15 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
+import Error from '@/components/Error';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Layout from "@components/Layout";
+import AuthRequired from '@components/AuthRequired';
+import Layout from '@components/Layout';
+import StoryModal from '@components/StoryModal';
 
-import Home from "@pages/Home";
-import StoryModal from "@components/StoryModal";
-import UserStories from "@pages/UserStories";
-import UserBookmarks from "@pages/UserBookmarks";
-import Error from "@/components/Error";
-import AuthRequired from "@components/AuthRequired";
+import Home from '@pages/Home';
+import UserBookmarks from '@pages/UserBookmarks';
+import UserStories from '@pages/UserStories';
+
+import './App.css';
 
 const App = () => {
   return (

@@ -57,6 +57,10 @@
   margin: 0;
 }
 
+.loader {
+  composes: loader from "../Story/storyGrid.module.css";
+}
+
 @media screen and (width >= 768px) {
   .content {
     width: 62.4rem;

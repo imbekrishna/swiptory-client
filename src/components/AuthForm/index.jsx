@@ -32,7 +32,10 @@ const AuthForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value.replace(/\s/g, ""),
+    }));
   };
 
   const handleEnter = (e) => {
@@ -106,8 +109,6 @@ const AuthForm = () => {
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Enter password"
-              pattern="/^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/"
-              title="Password must be at least 8 characters long and contain a lowercase letter, an uppercase letter, a number and a special character"
               value={formData.password}
               onChange={handleChange}
               onKeyDown={handleEnter}
@@ -129,7 +130,13 @@ const AuthForm = () => {
           disabled={loading}
           onClick={handleSubmit}
         >
-          {loading ? "..." : authModal.type === "LOGIN" ? "Login" : "Register"}
+          {loading ? (
+            <span className={styles.loader}></span>
+          ) : authModal.type === "LOGIN" ? (
+            "Login"
+          ) : (
+            "Register"
+          )}
         </button>
       </div>
     </article>

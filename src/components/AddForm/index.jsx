@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import api from "@api/api_instance";
 import closeIcon from "@assets/form_close.svg";
 import caretDown from "@assets/caret_down.svg";
@@ -30,6 +30,8 @@ const AddForm = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+
+  const formRef = useRef(null);
 
   useEffect(() => {
     if (addModal.data) {
@@ -94,6 +96,7 @@ const AddForm = () => {
 
   const closeForm = () => {
     setActiveIndex(0);
+    setError(null);
     setSlides(Array.from({ length: 3 }, () => newSlide));
     toggleAddModal(null);
   };
@@ -108,6 +111,8 @@ const AddForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formValid = formRef.current?.reportValidity();
+    console.log(formValid);
     try {
       setSubmitting(true);
       const isValid = slides.every((slide) => !slideIsInvalid(slide));
@@ -120,7 +125,10 @@ const AddForm = () => {
             slides,
           });
         } else {
-          await api.post("/api/story", { category: selectedCategory, slides });
+          await api.post("/api/story", {
+            category: selectedCategory._id,
+            slides,
+          });
         }
         closeForm();
         updateKey();
@@ -128,9 +136,11 @@ const AddForm = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         const data = error.response.data;
-        setError(data);
+        setError(data.error);
+      } else {
+        setError(error.message);
       }
-      setError(error.message);
+      console.log(error);
     } finally {
       setSubmitting(false);
     }
@@ -167,6 +177,7 @@ const AddForm = () => {
             )}
           </div>
           <form
+            ref={formRef}
             className={styles.modalForm}
             onFocus={() => {
               setError(null);
@@ -174,6 +185,7 @@ const AddForm = () => {
           >
             <label htmlFor="heading">Heading: </label>
             <input
+              required
               type="text"
               placeholder="Your heading"
               id="heading"
@@ -183,6 +195,7 @@ const AddForm = () => {
             />
             <label htmlFor="description">Description: </label>
             <textarea
+              required
               rows="2"
               type="text"
               placeholder="Story Description"
@@ -193,7 +206,8 @@ const AddForm = () => {
             />
             <label htmlFor="imageUrl">Image: </label>
             <input
-              type="text"
+              required
+              type="url"
               placeholder="Add Image Url"
               id="imageUrl"
               name="imageUrl"
@@ -221,8 +235,8 @@ const AddForm = () => {
             </Menu>
           </form>
         </div>
-        <div>
-          <p className="formError textCenter">{error ?? ""}</p>
+        <div className={styles.authError}>
+          <p>{error ?? ""}</p>
         </div>
         <div className={styles.buttonWrapper}>
           <button
@@ -242,7 +256,7 @@ const AddForm = () => {
             disabled={submitting}
             onClick={handleSubmit}
           >
-            {submitting ? "Posting" : "Post"}
+            {submitting ? <span className={styles.loader}></span> : "Post"}
           </button>
         </div>
       </div>

@@ -98,6 +98,26 @@
   display: none;
 }
 
+.authError {
+  color: var(--color-error);
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.authError > p {
+  white-space: pre-line;
+  margin: 0;
+}
+
+.loader {
+  composes: loader from "../Story/storyGrid.module.css";
+}
+
 @media screen and (width >= 768px) {
   .content {
     width: 68.2rem;

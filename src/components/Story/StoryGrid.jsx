@@ -1,7 +1,6 @@
 import { Suspense, lazy } from "react";
 import Skeleton from "./Skeleton";
 import styles from "./storyGrid.module.css";
-import clsx from "clsx";
 
 const Story = lazy(() => import("./index"));
 
@@ -38,7 +37,8 @@ const StoryGrid = ({
           </div>
           {currentPage !== totalPages && (
             <button
-              className={clsx("textLight", !loading && "bgPrimary")}
+              className="textLight bgPrimary"
+              disabled={loading}
               onClick={fetchNextPage}
             >
               {loading ? <span className={styles.loader}></span> : "See more"}

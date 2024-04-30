@@ -13,11 +13,11 @@ const UserContextProvider = ({ children }) => {
       switch (action.type) {
         case "SAVE_USER": {
           window.localStorage.setItem(LS_KEY, JSON.stringify(action.payload));
-          return { user: action.payload };
+          return { ...state, user: action.payload };
         }
         case "REMOVE_USER": {
           window.localStorage.removeItem(LS_KEY);
-          return { user: null };
+          return { ...state, user: null };
         }
         case "UPDATE_KEY": {
           return { ...state, refreshKey: nanoid(10) };

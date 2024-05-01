@@ -104,7 +104,7 @@ const AddForm = () => {
   };
 
   const slideIsInvalid = (slideData) => {
-    const isInvalid = Object.values(slideData).some((item) => item.length === 0);
+    const isInvalid = Object.values(slideData).some((item) => item.trim().length === 0);
     return isInvalid;
   };
 

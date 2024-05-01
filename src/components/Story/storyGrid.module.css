@@ -2,7 +2,7 @@
   display: grid;
   gap: 2.5rem;
   width: 100%;
-  max-width: 1600px;
+  /* max-width: 1600px; */
   justify-content: stretch;
 }
 

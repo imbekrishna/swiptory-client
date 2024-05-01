@@ -119,12 +119,19 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size);
 }
+
 main {
   padding: 1.5rem;
 
   @media screen and (width >= 768px) {
     & {
       padding: 3rem;
+    }
+  }
+
+  @media screen and (width >= 1440px)  {
+    & {
+      padding: 3rem 5rem;
     }
   }
 }

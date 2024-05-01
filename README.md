@@ -1,8 +1,24 @@
-# React + Vite
+# Swiptory - Stories on web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A story shareing web platform.
 
-Currently, two official plugins are available:
+## Features
+  1. View stories
+  2. Like stories
+  3. Bookmark stories
+  4. Share stories
+  5. Filter by category
+  6. Login and register
+  7. Add stories
+  8. Edit stories
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Links
+
+- Live Site URL: [https://storybe.ishownow.uk/](https://storybe.ishownow.uk/)
+- Server Repository: [swiptory-client](https://github.com/imbekrishna/swiptory-server)
+
+### Built with
+
+- [React](https://reactjs.org/) - JS library
+- [Vite](https://vite.dev/) - Build Tool
+- Vanilla CSS

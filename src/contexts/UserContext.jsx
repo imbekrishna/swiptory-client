@@ -36,7 +36,7 @@ const UserContextProvider = ({ children }) => {
     dispatch({ type: "SAVE_USER", payload: userData });
 
   const registerUser = async (formData) => {
-    await api.post("/api/user", formData);
+    await api.post("/api/auth/register", formData);
     const res = await api.post("/api/auth/login", formData);
     const data = res.data.data;
     setUser(data);

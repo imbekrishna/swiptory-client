@@ -122,6 +122,8 @@ body {
 
 main {
   padding: 1.5rem;
+  max-width: 1800px;
+  margin-inline: auto;
 
   @media screen and (width >= 768px) {
     & {
@@ -173,6 +175,11 @@ img[role="button"] svg[role="button"] {
 }
 
 /* #region Utility classes */
+
+.container {
+  max-width: 1600px;
+  margin-inline: auto;
+}
 
 .textCenter {
   text-align: center;

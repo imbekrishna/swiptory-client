@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { nanoid } from "nanoid";
-import api from "@/api/api_instance";
+import api from "@api/api_instance";
 
 const LS_KEY = "swiptoryuser";
 const UserContext = createContext(null);

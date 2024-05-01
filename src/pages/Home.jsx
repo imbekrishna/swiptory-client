@@ -1,8 +1,11 @@
-import Section from "@components/Section";
-import Categories from "@components/Categories";
-import { CategoryContext } from "@contexts/CategoryContext";
 import { useContext } from "react";
+
+import { CategoryContext } from "@contexts/CategoryContext";
 import { UserContext } from "@contexts/UserContext";
+
+import Categories from "@components/Categories";
+import Section from "@components/Section";
+
 import UserStories from "./UserStories";
 
 const Home = () => {
@@ -13,7 +16,9 @@ const Home = () => {
     return (
       <>
         <Categories />
-        {user && <UserStories key={refreshKey} />}
+        {user && (
+            <UserStories key={refreshKey} />
+        )}
         {categories?.map((category) => (
           <Section key={`${category._id}${refreshKey}`} category={category} />
         ))}
@@ -24,11 +29,7 @@ const Home = () => {
   return (
     <>
       <Categories />
-      <Section
-        key={`${activeCategory._id}${refreshKey}`}
-        category={activeCategory}
-      />
-      ;
+      <Section key={`${activeCategory._id}${refreshKey}`} category={activeCategory} />;
     </>
   );
 };

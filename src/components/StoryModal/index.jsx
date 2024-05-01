@@ -1,7 +1,7 @@
 import { useCallback, useContext, useRef, useState } from "react";
 
-import { ModalContext } from "@/contexts/ModalContext";
-import useStory from "@/hooks/useStory";
+import { ModalContext } from "@contexts/ModalContext";
+import useStory from "@hooks/useStory";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";

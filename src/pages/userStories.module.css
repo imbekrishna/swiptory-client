@@ -1,0 +1,9 @@
+.userStoriesWrapper {
+  display: none;
+}
+
+@media screen and (width >= 768px) {
+  .userStoriesWrapper {
+    display: flex;
+  }
+}

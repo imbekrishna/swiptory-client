@@ -1,4 +1,4 @@
-import useAPIData from "@/hooks/useAPIData";
+import useAPIData from "@hooks/useAPIData";
 import toast from "react-hot-toast";
 
 import SectionData from "./SectionData";

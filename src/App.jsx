@@ -1,4 +1,4 @@
-import Error from '@/components/Error';
+import Error from '@components/Error';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import AuthRequired from '@components/AuthRequired';

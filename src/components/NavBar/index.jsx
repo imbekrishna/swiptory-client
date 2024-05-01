@@ -81,7 +81,7 @@ const NavBar = () => {
             >
               Add Story
             </button>
-            <Link to="/user/bookmarks">
+            <Link to="/user/bookmarks" onClick={closeNav}>
               <button className={clsx("bgPrimary", "textLight", styles.iconButton)}>
                 <img src={bookmarkIcon} width="16px" height="16px" alt="" /> <span>Bookmarks</span>
               </button>

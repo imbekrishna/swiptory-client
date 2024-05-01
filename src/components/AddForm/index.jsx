@@ -104,7 +104,6 @@ const AddForm = () => {
   };
 
   const slideIsInvalid = (slideData) => {
-    // TODO: Strengthen validation
     const isInvalid = Object.values(slideData).some((item) => item.length === 0);
     return isInvalid;
   };

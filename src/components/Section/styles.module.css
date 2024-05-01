@@ -1,10 +1,13 @@
 .wrapper {
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 4rem;
+}
+
+.wrapper + .wrapper {
+  margin-top: 2rem;
 }
 
 .wrapper > h2 {

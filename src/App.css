@@ -131,6 +131,7 @@ main {
 
 button {
   min-width: 110px;
+  max-width: 136px;
   width: fit-content;
   font-weight: bold;
   font-size: 1.8rem;

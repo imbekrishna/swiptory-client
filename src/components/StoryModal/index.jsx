@@ -1,7 +1,5 @@
 import { useCallback, useContext, useRef, useState } from "react";
 
-import { ModalContext } from "@contexts/ModalContext";
-import useStory from "@hooks/useStory";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,6 +8,10 @@ import closeIcon from "@assets/close.svg";
 import nextIcon from "@assets/next.svg";
 import prevIcon from "@assets/prev.svg";
 import sendIcon from "@assets/send.svg";
+
+import useStory from "@hooks/useStory";
+
+import { ModalContext } from "@contexts/ModalContext";
 
 import Spinner from "@components/Loading/Spinner";
 
@@ -36,7 +38,6 @@ const StoryModal = () => {
 
   const [index, setIndex] = useState(indexRef.current);
   const [overflowHidden, setOverflowHidden] = useState(true);
-  const isOverflowing = story?.slides[index].description.length > 111;
 
   const toPrev = () => {
     indexRef.current = indexRef.current > 0 ? indexRef.current - 1 : 0;
@@ -146,27 +147,15 @@ const StoryModal = () => {
         <div className={styles.slideDetail}>
           <h2 className="textTitle textLight">{story?.slides[index].heading}</h2>
           <div className={clsx(styles.description, "textLight")}>
-            <p className={clsx(overflowHidden && styles.hideOverflow)}>{story?.slides[index].description}</p>
-            {isOverflowing && overflowHidden && (
-              <span
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOverflowHidden(false);
-                }}
-              >
-                more
-              </span>
-            )}
-            {isOverflowing && !overflowHidden && (
-              <span
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOverflowHidden(true);
-                }}
-              >
-                less
-              </span>
-            )}
+            <p
+              className={clsx(overflowHidden && styles.hideOverflow)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setOverflowHidden(prev => !prev);
+              }}
+            >
+              {story?.slides[index].description}
+            </p>
           </div>
         </div>
         <div className={styles.storyAction}>

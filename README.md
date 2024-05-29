@@ -15,7 +15,7 @@ A story shareing web platform.
 ### Links
 
 - Live Site URL: [https://storybe.ishownow.uk/](https://storybe.ishownow.uk/)
-- Server Repository: [swiptory-client](https://github.com/imbekrishna/swiptory-server)
+- Server Repository: [swiptory-server](https://github.com/imbekrishna/swiptory-server)
 
 ### Built with
 
